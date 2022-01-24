@@ -1,17 +1,18 @@
-import FormInfoPersonnelle from "./components/FormInfoPersonnelle";
-import LeftSide from "./components/LeftSide";
+import { Switch, Route } from "react-router-dom";
+import "./App.scss";
 
-import styles from "./components/Wrapper.module.css";
-
-import "./App.css";
+import Nav from "./components/Nav";
+import Form from "./components/Form";
 
 const App = () => {
-  return (
-    <section className={styles.wrapper}>
-      <LeftSide />
-      <FormInfoPersonnelle />
-    </section>
-  );
+	return (
+		<div className="container-fluid" id="app">
+			<Nav />
+			<Switch>
+				<Route path={"/form"} component={Form} />
+			</Switch>
+		</div>
+	);
 };
 
 export default App;
