@@ -1,0 +1,26 @@
+.custom-search-bttn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 2.5rem;
+	padding: 0.2rem 1.5rem;
+	box-shadow: var(--purple);
+
+	img {
+		width: 1.5rem;
+		height: auto;
+		display: block;
+		margin-right: 1.5rem;
+	}
+
+	input {
+		display: inline-flex;
+		flex-grow: 1;
+		border: none;
+
+		&:focus {
+			outline: none;
+		}
+	}
+}

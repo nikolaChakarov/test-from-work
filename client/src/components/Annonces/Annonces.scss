@@ -1,0 +1,32 @@
+#annonces-wrapper {
+	background-color: cornflowerblue;
+	padding: 0;
+
+	.col,
+	.row {
+		margin: 0;
+		padding: 0;
+	}
+
+	@keyframes anim {
+		0% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.5;
+		}
+		100% {
+			opacity: 0;
+			display: none;
+			transform: translateY(100%);
+		}
+	}
+
+	.disappear {
+		animation: anim 0.5s both;
+		position: absolute;
+	}
+}
+
+@media screen and(max-width: 576px) {
+}

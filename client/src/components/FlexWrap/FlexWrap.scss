@@ -1,0 +1,15 @@
+#flex-wrap-el {
+	background-color: lightblue;
+
+	.list {
+		background-color: lightgoldenrodyellow;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.item {
+		background-color: lightgreen;
+		border: 1px solid;
+		width: 46rem;
+	}
+}

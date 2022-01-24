@@ -1,0 +1,48 @@
+.boxes-wrapper {
+	background-color: chocolate;
+	flex-grow: 1;
+	display: flex;
+
+	.boxes-bttns {
+		display: flex;
+		flex-direction: column;
+		background-color: coral;
+	}
+
+	.boxes-current {
+		background-color: darkcyan;
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.current-paginate {
+		background-color: darkgoldenrod;
+		margin-top: auto;
+	}
+
+	.current-header {
+		height: 10rem;
+		background-color: darkgray;
+	}
+
+	.current-body {
+		flex-grow: 1;
+		background-color: lightblue;
+		overflow-y: scroll;
+	}
+}
+
+@media (max-width: 576px) {
+	.boxes-wrapper {
+		flex-direction: column;
+
+		.current-paginate {
+			display: none;
+		}
+
+		.current-body {
+			height: 1rem;
+		}
+	}
+}

@@ -1,0 +1,45 @@
+/* filters bttn */
+p {
+	margin: 0;
+	padding: 0;
+}
+
+.filters-bttn {
+	background-color: #fff;
+	position: relative;
+	width: 18rem;
+	padding: 0.4rem 1.5rem;
+	border-radius: 2.5rem;
+	box-shadow: 0 0.3rem 0.6rem #00000029;
+	z-index: 10;
+
+	img {
+		z-index: 100;
+	}
+
+	// .p-current-filter {
+	// 	font-size: var(--typo-lg15-sm13);
+	// 	font-weight: 500;
+	// }
+	// .p-filter {
+	// 	font-size: var(--typo-lg12-sm11);
+	// 	margin-top: 0.5rem;
+	// }
+
+	.filters-arrow {
+		transition: all 0.5s ease-in-out;
+	}
+}
+
+.filters-list {
+	background-color: red;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 0.4rem 1.5rem;
+	border-radius: 1.5rem;
+	box-shadow: 0 0.3rem 0.6rem #00000029;
+}
+
+/* end filters bttn */

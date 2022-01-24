@@ -1,0 +1,113 @@
+/*--- profileInfoMiddle  --*/
+.profileInfo {
+  padding: 0 4rem;
+  width: 100vw;
+}
+
+.profileInfo input,
+.profileInfo select {
+  display: block;
+  border: none;
+  height: 3.3rem;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 25px;
+  font-size: 1.8rem;
+  font-weight: 400;
+  padding: 0.4rem 2.5rem 0.4rem 2.5rem;
+  width: 100%;
+}
+
+.profileInfoMiddle {
+  margin-top: 2.5rem;
+}
+
+.profileInfoMiddle h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 3.7rem;
+}
+
+.profileInfo select {
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  background-image: url("../img/arrowDown.png");
+  background-repeat: no-repeat;
+  background-position-x: 93%;
+  background-position-y: 0.7rem;
+}
+
+.profileInfo label {
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.form {
+  display: flex;
+}
+
+.col {
+  flex: 1;
+  margin-right: 4rem;
+}
+
+.col:last-of-type {
+  margin-right: 0;
+}
+
+.infoSet {
+  margin-bottom: 2.5rem;
+}
+
+.profileInfo input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  width: 90%;
+  padding: 0;
+}
+
+.inputFileReplace {
+  display: flex;
+  border: none;
+  height: 3.3rem;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 25px;
+  font-size: 1.8rem;
+  font-weight: 400;
+  padding: 0.4rem 2.5rem 0.4rem 2.5rem;
+  width: 100%;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputFileReplace img {
+  margin-left: auto;
+  z-index: -10;
+}
+
+.inputFileReplace p {
+  position: absolute;
+}
+
+/*--- profileInfoTop  --*/
+.profileInfoTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4.15rem;
+}
+
+.profileInfoTop > p {
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
+.namePhoto {
+  display: flex;
+}
+
+.currentDate {
+    font-size: ;
+}

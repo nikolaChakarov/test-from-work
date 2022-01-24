@@ -1,0 +1,50 @@
+#hover-list {
+	background-color: lightblue;
+	flex-grow: 1;
+
+	.col-wrapper {
+		padding: 2rem;
+		position: relative;
+		min-height: 150px;
+		margin-bottom: 13rem;
+	}
+
+	.proprio-item-visible {
+		border: 1px solid;
+		height: 100%;
+		padding: 1.5rem 2rem;
+		border-radius: 2.5rem;
+		background-color: lightcoral;
+		position: relative;
+	}
+
+	.circle {
+		width: 4rem;
+		height: 4rem;
+		border: 1px solid;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translate(-50%);
+		background-color: #fff;
+		cursor: pointer;
+	}
+
+	.proprio-item-hidden {
+		position: absolute;
+		display: none;
+		background-color: yellow;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		transform: translateY(130%);
+		padding: 1.5rem 2rem;
+	}
+}
+
+@media (max-width: 576px) {
+}

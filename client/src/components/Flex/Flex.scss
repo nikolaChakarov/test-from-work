@@ -1,0 +1,21 @@
+#main {
+	background-color: darkgray;
+	height: 100%;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+}
+
+#top {
+	background-color: darkkhaki;
+}
+
+#middle {
+	background-color: darkorange;
+}
+
+#bottom {
+	background-color: darkred;
+	align-self: flex-end;
+}

@@ -1,0 +1,48 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+.wrapper {
+	background-color: lightblue;
+	flex: 1;
+}
+
+.inner {
+	width: 15rem;
+}
+
+.select-el {
+	margin: 1rem;
+	position: relative;
+	background-color: #fff;
+}
+
+img {
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto 0;
+	pointer-events: inherit;
+	transition: all 0.5s ease-in-out;
+}
+
+.select {
+	// A reset of styles, including removing the default dropdown arrow
+	appearance: none;
+	position: relative;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	width: 100%;
+	z-index: 10;
+	padding: 0.5rem;
+}
+
+select {
+	-webkit-appearance: none;
+	appearance: none;
+}

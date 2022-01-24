@@ -1,0 +1,178 @@
+#cards-wrapper {
+	display: flex;
+	flex-direction: column;
+
+	.row {
+		flex-grow: 1;
+		flex-wrap: wrap;
+		padding: 0;
+		margin: 0;
+	}
+
+	.col {
+		padding: 0;
+		margin: 0;
+	}
+
+	/*  custom accompagnateur card */
+	.card-custom {
+		font-size: var(--typo-lg15-sm11);
+		font-weight: 500;
+		border: none;
+		max-width: 46.4rem;
+		box-shadow: var(--boxShadow);
+		border-radius: 2.5rem;
+		overflow: hidden;
+		position: relative;
+		z-index: 1;
+
+		/*  card header */
+		.card-custom-header-container {
+			position: relative;
+			height: 18rem;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: bottom center;
+
+			.accomp-info {
+				position: absolute;
+				text-align: center;
+				width: 100%;
+				height: 100%;
+				z-index: 10;
+				padding: 1.6rem 0 1.7rem;
+				color: #fff;
+
+				/* accompagnateur photo */
+				.accomp-photo-container {
+					width: calc(10rem + (20 * (100vw - 32rem) / 1600));
+					height: calc(10rem + (20 * (100vw - 32rem) / 1600));
+					background-color: #fff;
+					margin: 0 auto;
+					border: 0.3rem solid #fff;
+					box-shadow: inset 0 2px #dedede;
+					border-radius: 50%;
+					margin-bottom: 0.7rem;
+				}
+			}
+
+			/* action buttons */
+			.accomp-actions {
+				position: absolute;
+				right: 0;
+				padding-right: 1rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				height: 100%;
+				z-index: 10;
+				.icon-bttn {
+					width: 4.9rem;
+					height: 4.9rem;
+					border-radius: 50%;
+					background-color: #fff;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+			}
+			/* decoration */
+			.decor {
+				width: 80%;
+				height: 0.4rem;
+				background-color: #fff;
+				box-shadow: var(--boxShadow);
+				position: absolute;
+				bottom: -0.2rem;
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+				border-radius: 0.5rem;
+			}
+		}
+		/*  end card header */
+
+		/* custom card body */
+		.card-custom-body {
+			padding: 2rem;
+			background-color: #fff;
+
+			.card-text {
+				display: flex;
+				justify-content: space-between;
+
+				.purple-text {
+					color: var(--purple);
+				}
+			}
+
+			h2 {
+				font-weight: 600;
+				font-variant: small-caps;
+				margin-bottom: 1rem;
+			}
+
+			.statistic-black,
+			.statistic-blue,
+			.statistic-red {
+				padding: 1rem 1.5rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				border: 0.3rem solid #000;
+				border-radius: 1rem;
+				box-shadow: var(--boxShadow);
+				font-size: 1rem;
+				font-weight: 500;
+			}
+
+			.statistic-black span:first-of-type,
+			.statistic-blue span:first-of-type,
+			.statistic-red span:first-of-type {
+				font-size: 2rem;
+				font-weight: 700;
+				margin-right: 1rem;
+			}
+
+			.statistic-blue {
+				border-color: #107eff;
+				color: #107eff;
+			}
+
+			.statistic-red {
+				border-color: #d80000;
+				color: #d80000;
+			}
+
+			.row-statistics {
+			}
+		}
+		/* end custom card body */
+	}
+	/* end custom accompagnateur card */
+
+	/* custom card footer */
+	.card-custom-footer {
+		background-color: #fff;
+		width: 100%;
+		bottom: 4rem;
+		position: relative;
+		z-index: 0;
+		padding: 4rem 4rem 1rem;
+		max-height: 30rem;
+		overflow: scroll;
+		box-shadow: var(--boxShadow);
+		border-radius: 2.5rem;
+		cursor: pointer;
+	}
+
+	.card-custom-footer::-webkit-scrollbar {
+		display: none;
+	}
+	/* end custom card footer */
+}
+
+@media (max-width: 576px) {
+	#cards-wrapper {
+	}
+}

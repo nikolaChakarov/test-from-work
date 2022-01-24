@@ -1,0 +1,26 @@
+export default {
+	months: [
+		"Janvier",
+		"Février",
+		"Mars",
+		"Avril",
+		"Mai",
+		"Juin",
+		"Juillet",
+		"Août",
+		"Septembre",
+		"Octobre",
+		"Novembre",
+		"Décembre",
+	],
+	daysShort: ["D", "L", "M", "M", "J", "V", "S"],
+	daysLong: [
+		"Dimanche",
+		"Lundi",
+		"Mardi",
+		"Mercredi",
+		"Jeudi",
+		"Vendredi",
+		"Samedi",
+	],
+};

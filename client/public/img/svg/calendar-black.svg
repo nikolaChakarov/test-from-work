@@ -1,0 +1,10 @@
+<svg id="Component_73_1" data-name="Component 73 – 1" xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45">
+  <g id="Ellipse_73" data-name="Ellipse 73" fill="#fff" stroke="#8811f9" stroke-width="1" opacity="0">
+    <circle cx="22.5" cy="22.5" r="22.5" stroke="none"/>
+    <circle cx="22.5" cy="22.5" r="22" fill="none"/>
+  </g>
+  <g id="Group_84" data-name="Group 84">
+    <path id="Icon_awesome-calendar" data-name="Icon awesome-calendar" d="M.582,9.686H21.146a.6.6,0,0,1,.582.605V23.408A2.377,2.377,0,0,1,19.4,25.83H2.328A2.377,2.377,0,0,1,0,23.408V10.292A.6.6,0,0,1,.582,9.686Zm21.146-2.22V5.65A2.377,2.377,0,0,0,19.4,3.229H17.072V.605A.6.6,0,0,0,16.49,0H14.55a.6.6,0,0,0-.582.605V3.229H7.76V.605A.6.6,0,0,0,7.178,0H5.238a.6.6,0,0,0-.582.605V3.229H2.328A2.377,2.377,0,0,0,0,5.65V7.466a.6.6,0,0,0,.582.605H21.146A.6.6,0,0,0,21.728,7.466Z" transform="translate(11.636 9.585)"/>
+    <text id="_1" data-name="1" transform="translate(19.5 30.234)" fill="#fff" font-size="11" font-family="Arial-BoldMT, Arial" font-weight="700"><tspan x="0" y="0">1</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,78 @@
+.leftSide {
+  height: 100vh;
+  background-color: var(--primary-color);
+  border-radius: 0px 25px 25px 0px;
+  box-shadow: 5px 0px 5px #00000029;
+  padding-top: 6.45rem;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+
+.leftSide a {
+  color: #fff;
+  font-size: 1.8rem;
+  font-variant: 300;
+  margin-bottom: 2.5rem;
+}
+
+.logoGroup {
+  background-color: #333;
+  color: #fff;
+  margin-bottom: 7.5rem;
+}
+
+.leftSideProfileMenu {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1.4rem;
+}
+
+.leftSideBottom {
+  padding-left: 1.4rem;
+  position: absolute;
+  bottom: 3.9rem;
+}
+
+.leftSideBottom a {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.leftSideBottom li:last-of-type {
+  margin-top: 2.5rem;
+}
+
+.leftSideBottom li:last-of-type a {
+  font-weight: 300;
+}
+
+.arrow {
+  position: absolute;
+  width: 5.6rem;
+  height: 5.6rem;
+  background-color: #fff;
+  border-radius: 50%;
+  top: 12.65rem;
+  right: 0;
+  transform: translateX(50%);
+  border: 0.3rem solid var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.4rem;
+  color: var(--primary-color);
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.arrow:hover {
+  cursor: pointer;
+}
+
+.rotation {
+  transform: rotate(-180deg);
+  transition: all 0.5s ease-in-out;
+}
+
+.menuItems {
+  transition: all 0.5s ease-in-out;
+}

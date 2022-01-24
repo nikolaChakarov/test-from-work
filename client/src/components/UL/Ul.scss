@@ -1,0 +1,42 @@
+#ul-custom {
+	ol {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		counter-reset: num 5;
+		margin-left: 2.5rem;
+	}
+
+	ol > li {
+		counter-increment: num;
+		padding: 0 0 0 0.5rem;
+	}
+
+	ol li::marker {
+		content: counter(num) ".";
+		color: red;
+		font-size: 3rem;
+		font-weight: bold;
+	}
+
+	ul.level-two {
+		list-style: square;
+
+		& li::marker {
+			content: none;
+			// color: blue;
+			// display: flex;
+			// align-items: center;
+			// justify-content: center;
+		}
+
+		& li::before {
+			content: "\2022";
+			color: #107eff;
+			font-weight: bold;
+			display: inline-block;
+			margin-left: -1em;
+			width: 1em;
+		}
+	}
+}

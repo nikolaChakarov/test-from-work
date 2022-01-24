@@ -1,0 +1,92 @@
+.navbar-custom {
+	background-color: rgb(22, 114, 175);
+
+	.navbar-brand {
+		margin-right: 10rem;
+		z-index: 10;
+	}
+
+	.mobile-wrapper {
+		flex: 1;
+	}
+
+	ul.navbar-nav {
+		background-color: lightskyblue;
+		flex: 1;
+		align-items: center;
+		li {
+			margin-right: 10rem;
+			a {
+				color: #fff;
+			}
+		}
+
+		li.user-info {
+			margin: 0 0 0 auto;
+			background-color: lightseagreen;
+			display: flex;
+			align-items: center;
+
+			p {
+				margin-right: 1rem;
+				color: #fff;
+			}
+		}
+
+		.user-img {
+			width: 5.8rem;
+			height: 5.8rem;
+			border-radius: 50%;
+			background-color: #fff;
+		}
+	}
+}
+
+@media (max-width: 576px) {
+	.navbar-custom {
+		position: relative;
+		/* hamburger button */
+
+		.navbar-brand {
+			margin: 0 auto;
+		}
+
+		.mobile-wrapper {
+			display: flex;
+			flex-direction: column;
+			position: absolute;
+			right: 0;
+			top: 0;
+			padding: 2rem;
+			background-color: lightblue;
+			border-top-left-radius: 2.5rem;
+			border-bottom-left-radius: 2.5rem;
+			transition: all 0.5s ease-in-out;
+			backdrop-filter: blur(3px) brightness(78%);
+			height: 50vh;
+		}
+
+		#navbarNav {
+			display: none;
+		}
+
+		ul.navbar-nav {
+			flex-direction: column;
+			align-items: flex-start;
+			margin-top: 3rem;
+
+			li {
+				margin: 0 0 3rem 0;
+			}
+
+			li.user-info {
+				margin-left: 0;
+			}
+		}
+
+		button.navbar-toggler {
+			background-color: lightseagreen;
+			margin: 0 0 0 auto;
+		}
+	}
+}

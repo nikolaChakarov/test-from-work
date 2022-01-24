@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--purple: #8811f9;
+
+	--typo-lg28-sm14: calc(1.4rem + (14 * (100vw - 32rem) / 1600));
+	--typo-lg20-sm14: calc(1.4rem + (6 * (100vw - 32rem) / 1600));
+	--typo-lg15-sm11: calc(1.1rem + (4 * (100vw - 32rem) / 1600));
+	--boxShadow: 0 0.3rem 0.6rem #00000029;
+	--border: 0.1rem solid #8811f9;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.6rem;
+}

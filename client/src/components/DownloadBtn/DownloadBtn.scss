@@ -1,0 +1,30 @@
+#label-custom {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 1rem;
+	background-color: #fff;
+	padding: 1rem 1.5rem;
+	box-shadow: var(--boxShadow);
+	border-radius: 2.5rem;
+
+	img {
+		margin-left: 1rem;
+	}
+}
+
+// .button.bttn-wrapper {
+// 	display: flex;
+// 	align-items: center;
+// 	justify-content: space-between;
+// 	margin-top: 1rem;
+// 	background-color: #fff;
+// 	padding: 1rem 1.5rem;
+// 	box-shadow: var(--boxShadow);
+// 	border-radius: 2.5rem;
+// 	cursor: pointer;
+
+// 	img {
+// 		margin-left: 1rem;
+// 	}
+// }

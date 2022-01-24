@@ -1,0 +1,84 @@
+#order {
+	padding: 0;
+	position: relative;
+	background-color: lightblue;
+	height: 50rem;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.btn {
+		font-size: 1.5rem;
+		padding: 1rem 2rem;
+		border: 1px solid;
+	}
+
+	.top {
+		background-color: lightgrey;
+	}
+
+	.middle {
+		background-color: lightgoldenrodyellow;
+		max-height: 50%;
+		overflow-y: hidden;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	.bottom {
+		background-color: lightgreen;
+		margin-top: auto;
+		margin-bottom: 1rem;
+	}
+
+	.last-bttn {
+		margin-left: auto;
+	}
+
+	.mobile-filter {
+		background-color: lightsalmon;
+	}
+
+	/* filters bttn */
+	.filters-bttn-wrapper {
+		position: relative;
+		padding: 1rem 2rem;
+		background-color: #fff;
+		border-radius: 2.5rem;
+		box-shadow: 0 0.3rem 1rem rgba($color: #000000, $alpha: 0.5);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		p {
+			margin: 0 1rem 0 0;
+		}
+	}
+	/* end filters bttn */
+
+	@media screen and(max-width: 576px) {
+		/* -10rem -> the heigth of the element above */
+		height: calc(100vh - 10rem);
+
+		.middle {
+			overflow-y: scroll;
+			margin-bottom: 1rem;
+		}
+
+		.mobile-filter {
+			margin-left: auto;
+		}
+
+		.top {
+			flex-direction: column;
+			margin-top: auto;
+		}
+	}
+}

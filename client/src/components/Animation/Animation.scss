@@ -1,0 +1,20 @@
+@keyframes anim {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+#animation {
+	h1 {
+		background-color: #000;
+		color: #fff;
+		padding: 0.5rem 1rem;
+		display: inline-flex;
+
+		transform-origin: 100% 50%;
+		animation: anim 0.5s both;
+	}
+}

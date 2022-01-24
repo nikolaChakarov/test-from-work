@@ -1,0 +1,47 @@
+#over {
+	background-color: mediumaquamarine;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+
+	.row,
+	.col {
+		margin: 0;
+		padding: 0;
+	}
+
+	.row {
+		height: 20rem;
+	}
+
+	.over-wrapper {
+		background-color: lightsalmon;
+	}
+
+	.first-col {
+		background-color: lightskyblue;
+	}
+
+	.second-col {
+		background-color: lightslategray;
+		display: flex;
+	}
+
+	// .test {
+	// 	background-color: red;
+	// 	width: 50rem;
+	// 	height: 10rem;
+	// }
+
+	.box {
+		min-width: 10rem;
+		height: 10rem;
+		border: 1px solid;
+		margin-right: 1rem;
+	}
+}
+
+@media (max-width: 576px) {
+	#over {
+	}
+}

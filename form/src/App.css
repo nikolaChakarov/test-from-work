@@ -1,0 +1,37 @@
+:root {
+  --primary-color: #8811f9;
+}
+div,
+h1,
+h2,
+h3,
+p,
+section,
+ul,
+li,
+a,
+header,
+footer,
+main,
+nav {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}

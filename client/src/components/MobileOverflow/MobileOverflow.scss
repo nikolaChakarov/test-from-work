@@ -1,0 +1,39 @@
+#mobile-overflow {
+	background-color: lightblue;
+	display: flex;
+	flex-direction: column;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+
+		li {
+			margin-bottom: 1rem;
+			border: 1px solid;
+			display: flex;
+		}
+	}
+
+	.row-body {
+		background-color: lightgoldenrodyellow;
+		overflow-y: scroll;
+		padding: 1rem;
+	}
+}
+
+@media (max-width: 576px) {
+	#mobile-overflow {
+		ul {
+			background-color: red;
+			overflow-x: scroll;
+			flex-wrap: wrap;
+			li {
+				// overflow-x: scroll;
+				background-color: lightseagreen;
+			}
+		}
+	}
+}
