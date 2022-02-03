@@ -49,6 +49,7 @@ const Select = () => {
 					</select>
 
 					<img
+						className="img-select"
 						src="/img/arrow-down.svg"
 						alt="arrow icon"
 						style={{

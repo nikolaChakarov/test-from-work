@@ -1,0 +1,11 @@
+#overflow {
+	background-color: lightblue;
+	flex: 1;
+	height: 100%;
+
+	.inner {
+		background-color: lightseagreen;
+		max-height: 100%;
+		overflow-y: scroll;
+	}
+}

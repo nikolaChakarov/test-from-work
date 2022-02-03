@@ -1,0 +1,14 @@
+#img-fit {
+	background-color: lightblue;
+	flex: 1;
+	flex-direction: column;
+
+	.carousel-item {
+		overflow-y: hidden;
+	}
+
+	img {
+		max-height: 60rem;
+		object-fit: cover;
+	}
+}

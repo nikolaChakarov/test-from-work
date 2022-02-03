@@ -35,6 +35,24 @@ const Nav = () => {
 				<li>
 					<Link to={"/download"}>Download</Link>
 				</li>
+				<li>
+					<Link to={"/carousel"}>Carousel</Link>
+				</li>
+				<li>
+					<Link to={"/image-fit"}>Image Fit</Link>
+				</li>
+				<li>
+					<Link to={"/react-test"}>React</Link>
+				</li>
+				<li>
+					<Link to={"/calendar-repeat"}>Calendar Repeat</Link>
+				</li>
+				<li>
+					<Link to={"/overflow"}>Overflow</Link>
+				</li>
+				<li>
+					<Link to={"/state-list"}>State List</Link>
+				</li>
 			</ul>
 		</nav>
 	);

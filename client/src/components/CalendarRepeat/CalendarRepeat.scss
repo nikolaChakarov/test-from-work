@@ -1,0 +1,23 @@
+#calendar-repeat {
+	background-color: lemonchiffon;
+	button {
+		border: 1px solid;
+	}
+
+	.week {
+		display: flex;
+	}
+
+	.day {
+		border: 1px solid red;
+		padding: 2px;
+		margin: 2px;
+		font-weight: 600;
+		background-color: red;
+		color: #fff;
+	}
+
+	.padding-day {
+		opacity: 50%;
+	}
+}

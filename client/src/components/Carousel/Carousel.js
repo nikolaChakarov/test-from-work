@@ -5,17 +5,16 @@ const Carousel = () => {
 		<div id="carousel" className="carousel slide" data-bs-ride="carousel">
 			<div className="carousel-inner">
 				<div className="carousel-item active">
-					<img src="/img/slide01.svg" class="d-block w-100" alt="slide image" />
+					<img src="/img/slide01.svg" class="d-block w-100" alt="slide01" />
 				</div>
 				<div className="carousel-item">
-					<img src="/img/slide01.svg" class="d-block w-100" alt="slide image" />
+					<img src="/img/slide01.svg" class="d-block w-100" alt="slide02" />
 				</div>
 				<div className="carousel-item">
-					<img src="/img/slide01.svg" class="d-block w-100" alt="slide image" />
+					<img src="/img/slide01.svg" class="d-block w-100" alt="slide03" />
 				</div>
 			</div>
 
-			{/* buttons */}
 			<button
 				class="carousel-control-prev"
 				type="button"
