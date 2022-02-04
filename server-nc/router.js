@@ -106,6 +106,59 @@ router.post("/api/utilisateurs/create", async (req, res, next) => {
 	}
 });
 
+router.get("/api/utilisateurs/all", (req, res, nexrt) => {
+	try {
+		fs.readFile(utilisateursPath, "utf-8", (err, fileData) => {
+			if (err) {
+				throw new Error();
+			}
+
+			const data = JSON.parse(fileData);
+
+			res.status(200).json(data);
+		});
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({ msg: "Server Error. ...what else:)" });
+	}
+});
+
+router.post("/api/utilisateurs/update/:id", (req, res, next) => {
+	try {
+		const id = req.body.id;
+
+		jsonReader(utilisateursPath, (err, fileData) => {
+			if (err) {
+				console.error(err);
+			} else {
+				const index = fileData.findIndex((el) => el.id == id);
+				const elementToUpdate = fileData.find((el) => el.id == id);
+				elementToUpdate.action = !elementToUpdate.action;
+
+				const firstPartArr = fileData.slice(0, index);
+				const secondPartArr = fileData.slice(index + 1);
+
+				const finalArr = [...firstPartArr, elementToUpdate, ...secondPartArr];
+
+				fs.writeFile(
+					utilisateursPath,
+					JSON.stringify(finalArr, null, 2),
+					(err) => {
+						if (err) {
+							console.error(err);
+						} else {
+							res.status(200).json(finalArr);
+						}
+					}
+				);
+			}
+		});
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({ msg: "Server Error...again" });
+	}
+});
+
 function jsonReader(filePath, cb) {
 	fs.readFile(filePath, "utf-8", (err, fileData) => {
 		if (err) {
