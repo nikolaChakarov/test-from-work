@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const fs = require("fs/promises");
+// const fs = require("fs/promises");
+const fs = require("fs");
 const util = require("util");
 
 /* to delete an already uploaded file */
@@ -12,7 +13,9 @@ const upload = multer({ dest: "uploads" });
 
 const path = require("path");
 const dir = __dirname;
+
 const filePath = path.resolve(dir, "db.json");
+const utilisateursPath = path.resolve(dir, "utilisateurs.json");
 
 const db = require("./db");
 
@@ -70,8 +73,6 @@ router.post("/images", upload.single("image"), async (req, res, next) => {
 router.get("/images/:key", (req, res, next) => {
 	const key = req.params.key;
 
-	console.log(key);
-
 	try {
 		const readStream = getFileStream(key);
 
@@ -81,5 +82,43 @@ router.get("/images/:key", (req, res, next) => {
 		res.status(500).json({ msg: error.message });
 	}
 });
+
+/* create utilisateur write in a json file */
+router.post("/api/utilisateurs/create", async (req, res, next) => {
+	try {
+		const formData = req.body;
+		jsonReader(utilisateursPath, (err, data) => {
+			if (err) {
+				console.error(err);
+			} else {
+				data.push(formData);
+				fs.writeFile(utilisateursPath, JSON.stringify(data, null, 2), (err) => {
+					if (err) {
+						console.error(err);
+					} else {
+						res.status(200).json(data);
+					}
+				});
+			}
+		});
+	} catch (err) {
+		console.error(err);
+	}
+});
+
+function jsonReader(filePath, cb) {
+	fs.readFile(filePath, "utf-8", (err, fileData) => {
+		if (err) {
+			return cb(err);
+		}
+
+		try {
+			const data = JSON.parse(fileData);
+			return cb(null, data);
+		} catch (err) {
+			return cb(err);
+		}
+	});
+}
 
 module.exports = router;
