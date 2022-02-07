@@ -5,7 +5,20 @@
 	font-family: "Roboto";
 }
 
+// body::-webkit-scrollbar {
+// 	display: none;
+// }
+
 .img {
 	width: 100%;
 	height: 5rem;
+}
+
+.test {
+	background-color: rgb(233, 233, 233);
+	padding: 20px 0;
+}
+
+.image-collage-slider::-webkit-scrollbar {
+	display: none;
 }

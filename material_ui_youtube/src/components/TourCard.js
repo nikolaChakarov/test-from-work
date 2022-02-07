@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
 	Grid,
 	Paper,
@@ -39,13 +41,20 @@ const TourCard = ({
 	image,
 	name,
 	duration,
-	rating,
 	numberOfReviews,
 	price,
+	id,
+	collection,
 }) => {
+	const navigate = useNavigate();
 	const [ratingValue, setRatingValue] = useState(2.5);
+
+	const onTourClick = () => {
+		navigate(`/${id}`, { state: { collection } });
+	};
+
 	return (
-		<Grid item xs={3}>
+		<Grid item xs={3} onClick={onTourClick}>
 			<ThemeProvider theme={appCustomTheme}>
 				<Paper elevation={2} square>
 					<img src={image} alt="" className="img" />
