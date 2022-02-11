@@ -1,0 +1,41 @@
+#calendar-modal {
+	background-color: lightgray;
+
+	.calendar-controls {
+		margin: 2rem 0;
+	}
+
+	.select-wrapper {
+		border: 1px solid;
+		margin-right: 2rem;
+	}
+
+	.bttns-calendar-set {
+		display: flex;
+		button {
+			margin: 0 2rem;
+		}
+	}
+
+	.ul-days {
+		.li-day {
+			margin-right: 2rem;
+			border: 1px dashed red;
+			min-width: 3rem;
+		}
+	}
+
+	.ul-week {
+		display: flex;
+
+		.li-day {
+			margin-right: 2rem;
+			border: 1px dashed yellow;
+			min-width: 3rem;
+		}
+
+		.current-day {
+			background-color: #fff;
+		}
+	}
+}

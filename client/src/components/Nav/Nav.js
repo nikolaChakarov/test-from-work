@@ -53,6 +53,9 @@ const Nav = () => {
 				<li>
 					<Link to={"/state-list"}>State List</Link>
 				</li>
+				<li>
+					<Link to={"/calendar-modal"}>Calendar Modal</Link>
+				</li>
 			</ul>
 		</nav>
 	);
