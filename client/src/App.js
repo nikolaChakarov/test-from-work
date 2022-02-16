@@ -22,6 +22,9 @@ import CalendarRepeat from "./components/CalendarRepeat/CalendarRepeat";
 import Overflow from "./components/Overflow/Overflow";
 import StateList from "./components/StateList/StateList";
 import CalendarModal from "./components/CalendarModal/CalendarModal";
+import ChartDiagram from "./components/ChartDiagram/ChartDiagram";
+import GeneratePDF from "./components/GeneratePDF/GeneratePDF";
+import TableLayout from "./components/TableLayout/TableLayout";
 
 // import { ChainProvider } from "./components/ContextChain/context/ChainState";
 
@@ -38,6 +41,9 @@ const App = () => {
 					<Route path={"/overflow"} component={Overflow} />
 					<Route path={"/state-list"} component={StateList} />
 					<Route path={"/calendar-modal"} component={CalendarModal} />
+					<Route path={"/chart"} component={ChartDiagram} />
+					<Route path={"/generate-pdf"} component={GeneratePDF} />
+					<Route path={"/table-layout"} component={TableLayout} />
 					{/* <Route path={"/input-bttn"} component={InputWithBttnInside} /> */}
 					{/* <Route path={"/diff-number-cols"} component={DiffNumberCols} /> */}
 					{/* <Route path={"/image-upload"} component={UploadImage} /> */}

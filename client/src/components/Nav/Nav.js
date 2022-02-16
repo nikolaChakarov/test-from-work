@@ -56,6 +56,15 @@ const Nav = () => {
 				<li>
 					<Link to={"/calendar-modal"}>Calendar Modal</Link>
 				</li>
+				<li>
+					<Link to={"/chart"}>Apex Chart</Link>
+				</li>
+				<li>
+					<Link to={"/generate-pdf"}>PDF</Link>
+				</li>
+				<li>
+					<Link to={"/table-layout"}>Table Layout</Link>
+				</li>
 			</ul>
 		</nav>
 	);

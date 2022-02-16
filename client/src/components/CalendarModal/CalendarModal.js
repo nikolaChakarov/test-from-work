@@ -21,7 +21,7 @@ const CalendarModal = () => {
 
 	const toggleMonthIndex = (val) => {
 		if (val === 0) {
-			setMonthIndex(0);
+			setMonthIndex(dayjs().month());
 			return;
 		}
 		setMonthIndex(monthIndex + val);
@@ -29,6 +29,11 @@ const CalendarModal = () => {
 
 	useEffect(() => {
 		setMonthMatrix(getMonthMatrix(monthIndex));
+		setCurrentDateString(
+			dayjs(new Date(dayjs().year(), monthIndex))
+				.format("DD MMMM YYYY")
+				.toLocaleUpperCase()
+		);
 	}, [monthIndex]);
 
 	return (
