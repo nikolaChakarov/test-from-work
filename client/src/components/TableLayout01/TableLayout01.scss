@@ -9,6 +9,16 @@
 		display: none;
 	}
 
+	.flex-wrapper {
+		display: flex;
+		flex-direction: column;
+		overflow-y: scroll;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
 	.inner-body {
 		overflow-y: scroll;
 		margin-bottom: 5rem;
@@ -41,6 +51,16 @@
 				display: flex;
 				border: 1px solid red;
 				margin: 1rem 0;
+				padding: 0.2rem;
+			}
+
+			.table-col {
+				border: 1px dashed lightseagreen;
+				margin-right: 1rem;
+
+				&:last-of-type {
+					margin-right: 0;
+				}
 			}
 		}
 	}
@@ -48,5 +68,10 @@
 
 @media (max-width: 576px) {
 	#table-layout {
+		flex-wrap: wrap;
+
+		.li-title {
+			min-width: 5rem;
+		}
 	}
 }
