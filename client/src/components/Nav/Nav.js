@@ -65,6 +65,9 @@ const Nav = () => {
 				<li>
 					<Link to={"/table-layout"}>Table Layout</Link>
 				</li>
+				<li>
+					<Link to={"/table-layout02"}>Table Layout 02</Link>
+				</li>
 			</ul>
 		</nav>
 	);

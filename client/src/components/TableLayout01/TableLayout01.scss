@@ -28,39 +28,34 @@
 		}
 	}
 
-	header {
+	ul.ul-titles {
 		background-color: aquamarine;
+		display: flex;
+		border: 1px dashed lightpink;
+	}
 
-		ul.ul-titles {
-			display: flex;
-			border: 1px dashed lightpink;
-		}
-
-		li.li-title {
-			border: 1px dashed red;
-			margin-right: 1rem;
-			&:last-of-type {
-				margin-right: 0;
-			}
+	li.li-title {
+		border: 1px dashed red;
+		margin-right: 1rem;
+		&:last-of-type {
+			margin-right: 0;
 		}
 	}
 
-	main {
-		.inner-wrapper {
-			.table-row {
-				display: flex;
-				border: 1px solid red;
-				margin: 1rem 0;
-				padding: 0.2rem;
-			}
+	.inner-wrapper {
+		.table-row {
+			display: flex;
+			border: 1px solid red;
+			margin: 1rem 0;
+			padding: 0.2rem;
+		}
 
-			.table-col {
-				border: 1px dashed lightseagreen;
-				margin-right: 1rem;
+		.table-col {
+			border: 1px dashed lightseagreen;
+			margin-right: 1rem;
 
-				&:last-of-type {
-					margin-right: 0;
-				}
+			&:last-of-type {
+				margin-right: 0;
 			}
 		}
 	}

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./app.scss";
 import { Switch, Route } from "react-router-dom";
 
 import Nav from "./components/Nav/Nav";
-import CalendarYouTube from "./components/CalendarYouTube/CalendarYouTube";
+// import CalendarYouTube from "./components/CalendarYouTube/CalendarYouTube";
 // import InputWithBttnInside from "./components/InputWithBttnInside/InputWithBttnInside";
 // import DiffNumberCols from "./components/DiffNumberCols/DiffNumberCols";
 // import UploadImage from "./components/UploadImage/UploadImage";
@@ -18,32 +18,42 @@ import CalendarYouTube from "./components/CalendarYouTube/CalendarYouTube";
 // import PageTwo from "./components/ContextChain/components/PageTwo";
 // import PageThree from "./components/ContextChain/components/PageThree";
 // import End from "./components/ContextChain/components/End";
-import CalendarRepeat from "./components/CalendarRepeat/CalendarRepeat";
-import Overflow from "./components/Overflow/Overflow";
-import StateList from "./components/StateList/StateList";
-import CalendarModal from "./components/CalendarModal/CalendarModal";
-import ChartDiagram from "./components/ChartDiagram/ChartDiagram";
+// import CalendarRepeat from "./components/CalendarRepeat/CalendarRepeat";
+// import Overflow from "./components/Overflow/Overflow";
+// import StateList from "./components/StateList/StateList";
+// import CalendarModal from "./components/CalendarModal/CalendarModal";
+// import ChartDiagram from "./components/ChartDiagram/ChartDiagram";
 import GeneratePDF from "./components/GeneratePDF/GeneratePDF";
 import TableLayout01 from "./components/TableLayout01/TableLayout01";
+import TableLayout02 from "./components/TableLayout02/TableLayout02";
 
 // import { ChainProvider } from "./components/ContextChain/context/ChainState";
 
 const App = () => {
+	const [click, setClick] = useState(false);
+
 	return (
 		<>
-			<div className="container-fluid d-flex" id="app-container">
-				<div className="space">
+			<div className="" id="app-container">
+				<div
+					className="space"
+					onClick={() => setClick(!click)}
+					style={{
+						width: click ? "30rem" : "",
+					}}
+				>
 					<Nav />
 				</div>
 				<Switch>
-					<Route path={"/calendar-repeat"} component={CalendarRepeat} />
+					{/* <Route path={"/calendar-repeat"} component={CalendarRepeat} />
 					<Route path={"/calendar"} component={CalendarYouTube} />
 					<Route path={"/overflow"} component={Overflow} />
 					<Route path={"/state-list"} component={StateList} />
 					<Route path={"/calendar-modal"} component={CalendarModal} />
-					<Route path={"/chart"} component={ChartDiagram} />
+					<Route path={"/chart"} component={ChartDiagram} /> */}
 					<Route path={"/generate-pdf"} component={GeneratePDF} />
 					<Route path={"/table-layout"} component={TableLayout01} />
+					<Route path={"/table-layout02"} component={TableLayout02} />
 					{/* <Route path={"/input-bttn"} component={InputWithBttnInside} /> */}
 					{/* <Route path={"/diff-number-cols"} component={DiffNumberCols} /> */}
 					{/* <Route path={"/image-upload"} component={UploadImage} /> */}
