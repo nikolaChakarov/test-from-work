@@ -32,3 +32,15 @@ a {
 li {
 	list-style: none;
 }
+
+#main-app {
+	position: relative;
+	display: flex;
+	height: 100vh;
+}
+
+.app-body {
+	background-color: lightgray;
+	display: flex;
+	flex-direction: column;
+}

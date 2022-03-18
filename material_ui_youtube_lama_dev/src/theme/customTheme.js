@@ -1,11 +1,14 @@
 import { createTheme } from "@mui/material/styles";
 
 const customTheme = createTheme({
-	// palette: {
-	// 	primary: {
-	// 		main: "#850000",
-	// 	},
-	// },
+	palette: {
+		primary: {
+			main: "#850000",
+		},
+		secondary: {
+			main: "#dedede",
+		},
+	},
 	typography: {
 		fontFamily: "Quicksand, sans-serif",
 	},

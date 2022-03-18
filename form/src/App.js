@@ -1,16 +1,24 @@
 import { Switch, Route } from "react-router-dom";
 import "./App.scss";
 
-import Nav from "./components/Nav";
+import Sidebar from "./components/Sidebar.js/Sidebar";
 import Form from "./components/Form";
+import LayoutFlex01 from "./components/LayoutFlex01/LayoutFlex01";
+import LayoutInnerScroll2 from "./components/LayoutInnerScroll2/LayoutInnerScroll2";
+import FlexBoxTraversyMedia from "./components/FlexBoxTraversyMedia/FlexBoxTraversyMedia";
 
 const App = () => {
 	return (
-		<div className="container-fluid" id="app">
-			<Nav />
-			<Switch>
-				<Route path={"/form"} component={Form} />
-			</Switch>
+		<div className="" id="main-app">
+			<Sidebar />
+			<div className="app-body container-fluid">
+				<Switch>
+					<Route path={"/form"} component={Form} />
+					<Route path={"/layout-01"} component={LayoutFlex01} />
+					<Route path={"/layout02"} component={LayoutInnerScroll2} />
+					<Route path={"/flex-box"} component={FlexBoxTraversyMedia} />
+				</Switch>
+			</div>
 		</div>
 	);
 };

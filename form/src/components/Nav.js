@@ -10,6 +10,16 @@ const Nav = () => {
 				<li>
 					<Link to={"/form"}>Form</Link>
 				</li>
+				<li>
+					<Link to={"/layout-01"}>Layout01</Link>
+				</li>
+				<li>
+					<Link to={"/layout02"}>Layout02</Link>
+				</li>
+
+				<li>
+					<Link to={"/flex-box"}>Flex Box</Link>
+				</li>
 			</ul>
 		</div>
 	);
