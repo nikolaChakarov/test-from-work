@@ -20,6 +20,9 @@ const Nav = () => {
 				<li>
 					<Link to={"/flex-box"}>Flex Box</Link>
 				</li>
+				<li>
+					<Link to={"/up-down"}>Download Upload</Link>
+				</li>
 			</ul>
 		</div>
 	);
