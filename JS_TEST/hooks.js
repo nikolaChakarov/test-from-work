@@ -12,3 +12,39 @@
 // 18.Hooks are the new feature introduced in the React 16.8 version. It allows you to use state and other React features without writing a class. Hooks are the functions which "hook into" React state and lifecycle features from function components. It does not work inside classes.
 //Only call Hooks at the top level. Don’t call Hooks inside loops, conditions, or nested functions.
 //Only call Hooks from React function components. Don’t call Hooks from regular JavaScript functions. (There is just one other valid place to call Hooks — your own custom Hooks. We’ll learn about them in a moment.)
+
+// 19. The equivalent of componentDidMount in hooks is the useEffect function.
+//Functions passed to useEffect are executed on every component rendering—unless you pass a second argument to it.
+//If the second argument is an empty array, like the example above, it will behave exactly like the componentDidMount, only executing on the first rendering.
+//Alternatively, you can pass one or more values inside the array, which will make useEffect execute every time those value changes.
+//By returning an anonymous function with useEffect, it will run before the component unmounting. And the empty array passed as second argument tells to useEffect to run when the component will be mounted or unmounted.
+
+// 21. In Redux, a reducer is a pure function that takes an action and the previous state of the application and returns the new state. The action describes what happened and it is the reducer's job to return the new state based on that action
+
+// 23. Props are used to pass data from one component to another. The state is a local data storage that is local to the component only and cannot be passed to other components
+
+// 24. Keys help React identify which items have changed, are added, or are removed
+
+// 25. The useReducer Hook accepts two arguments. useReducer(<reducer>, <initialState>) The reducer function contains your custom state logic and the initialState can be a simple value but generally will contain an object. The useReducer Hook returns the current state and a dispatch method
+
+// 26. HTTP response status codes
+// Informational responses (100–199)
+// Successful responses (200–299)
+// Redirection messages (300–399)
+// Client error responses (400–499)
+// Server error responses (500–599)
+
+// 28.1 What is HTTP?
+//The Hypertext Transfer Protocol (HTTP) is the foundation of the World Wide Web, and is used to load web pages using hypertext links. HTTP is an application layer protocol //designed to transfer information between networked devices and runs on top of other layers of the network protocol stack. A typical flow over HTTP involves a client machine //making a request to a server, which then sends a response message.
+
+//  What’s in an HTTP request?
+//  An HTTP request is the way internet communications platforms such as web browsers ask for the information they need to load a website.
+//  Each HTTP request made across the Internet carries with it a series of encoded data that carries different types of information. A typical HTTP request contains:
+// 1.HTTP version type
+// 2.a URL
+// 3.an HTTP method
+// 4.HTTP request headers
+// 5.Optional HTTP body.
+// 28.2 HTTPS is HTTP with encryption. The only difference between the two protocols is that HTTPS uses TLS (SSL) to encrypt normal HTTP requests and responses. As a result, HTTPS is far more secure than HTTP
+
+// 29.
