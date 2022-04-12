@@ -45,6 +45,25 @@
 // 3.an HTTP method
 // 4.HTTP request headers
 // 5.Optional HTTP body.
+
 // 28.2 HTTPS is HTTP with encryption. The only difference between the two protocols is that HTTPS uses TLS (SSL) to encrypt normal HTTP requests and responses. As a result, HTTPS is far more secure than HTTP
 
-// 29.
+// 29.  SSL stands for Secure Sockets Layer, a security protocol that creates an encrypted link between a web server and a web browser.
+
+// 30. JWT, or JSON Web Token, is an open standard used to share security information between two parties — a client and a server. Each JWT contains encoded JSON objects, including a set of claims. JWTs are signed using a cryptographic algorithm to ensure that the claims cannot be altered after the token is issued.
+
+// 34.
+// 1. Encapsulation Encapsulation is the mechanism of hiding of data implementation by restricting access to public methods. Instance variables are kept private and accessor methods are made public to achieve this
+// 2. Abstraction
+// 3. Inheritance
+// 4. Polymorphism
+
+// 43. Scrum is a framework that helps teams work together.
+
+// 44. Gitflow is a legacy Git workflow that was originally a disruptive and novel strategy for managing Git branches
+
+// 45. TCP is a connection-oriented protocol, whereas UDP is a connectionless protocol. A key difference between TCP and UDP is speed, as TCP is comparatively slower than UDP. Overall, UDP is a much faster, simpler, and efficient protocol, however, retransmission of lost data packets is only possible with TCP
+
+// 48. Cross-Origin Resource Sharing (CORS) is an HTTP-header based mechanism that allows a server to indicate any origins (domain, scheme, or port) other than its own from which a browser should permit loading resources.
+
+// 50. The Javascript DOM (Document Object Model) is an interface that allows developers to manipulate the content, structure and style of a website
