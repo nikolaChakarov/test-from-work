@@ -1,0 +1,45 @@
+git config --global user.name thename
+git config --global user.email theemail
+
+mkdir;
+rmdir;
+ni create a file
+rm delete dir; file;
+
+commit -> lide a save point;
+
+3 stages:
+Modified: Changed files not commited;
+Staging: Add any changed files to staging that we want to commit;
+Commited: Any files in the staging area are added to the commit when we make one;
+when commit something, git takes everything from the staging area and create a commit from that.
+
+git rm --cached <file>... to remove a file from staging area.
+git log -> shows git history
+
+git log --oneline -> history on one line only
+
+CHECKOUT COMMIT:
+    only for consulting
+
+    git checkout id of commit;
+    git checkout master -> go back on the main branch
+
+REVERT COMMIT:
+    git revert id
+
+RESET COMMIT:
+    git reset id
+    git reset id --hard will erase all
+
+    // BRANCHES
+
+    git branch <branch_name>
+    git branch -a branches' list
+
+    Merge branches;
+    git merge <the name of the branch that we want to merge in>
+    git branch -d <branch name> -> delete branch (lower d if the branch is merged)
+    git branch -D <branch name> to delete a branch
+
+    git checkout -b <branch name> create a branch and set it at the same time;

@@ -3,6 +3,8 @@ const router = require("express").Router();
 const fs = require("fs");
 const util = require("util");
 
+const buildPdf = require("./service/pdfService");
+
 /* to delete an already uploaded file */
 const unlinkFile = util.promisify(fs.unlink);
 
@@ -18,6 +20,8 @@ const filePath = path.resolve(dir, "db.json");
 const utilisateursPath = path.resolve(dir, "utilisateurs.json");
 
 const db = require("./db");
+
+const { homeview } = require("./controllers/homeController");
 
 router.get("/database", (req, res, next) => {
 	res.json(db).status(200);
@@ -159,6 +163,18 @@ router.post("/api/utilisateurs/update/:id", (req, res, next) => {
 	}
 });
 
+router.get("/invoice", (req, res, next) => {
+	const stream = res.writeHead(200, {
+		"Content-Type": "application/pdf",
+		"Content-Disposition": "attachment;filename=invoice.pdf",
+	});
+
+	buildPdf(
+		(chunk) => stream.write(chunk),
+		() => stream.end()
+	);
+});
+
 function jsonReader(filePath, cb) {
 	fs.readFile(filePath, "utf-8", (err, fileData) => {
 		if (err) {
@@ -173,5 +189,7 @@ function jsonReader(filePath, cb) {
 		}
 	});
 }
+
+router.get("/api/pdf-home", homeview);
 
 module.exports = router;

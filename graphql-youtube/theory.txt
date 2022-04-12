@@ -1,0 +1,21 @@
+GraphQL is a query language which gives the client the power to ask for exactly what they need.
+
+query {
+    catgory(id:1) {
+        name
+        products {
+            image
+            name
+        }
+    }
+}
+
+това, което казваме тук е: намери категория по ID, върни името на категорията заедно с масива products, от които искам само image and name;
+
+when we create a GraphQL server, we have to specify two things. the type definitions or in other words the schema and the resolver.
+The Schema is the way that our data is going to look; the way our query is going to look, the way that our mutations are going to look, it's just the way that we specify how our data looks like.
+The resolvers are actual functions that return the data that conforms to the way that we specify them in the schema.
+
+Scalar types: String, Integet, Float, Boolean
+
+the resolver has three parameters that we can utilize: parent, args, context

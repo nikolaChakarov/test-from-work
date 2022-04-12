@@ -1,0 +1,13 @@
+.select {
+    border: 2px dashed red;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.option {
+    border: 1px dashed black;
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}

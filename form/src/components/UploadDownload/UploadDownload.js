@@ -54,7 +54,7 @@ const UploadDownload = () => {
 					<input onChange={fileSelected} type="file" />
 				</label>
 
-				<button>Send</button>
+				<button type="submit">Send</button>
 			</form>
 		</div>
 	);

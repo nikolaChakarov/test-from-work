@@ -23,6 +23,9 @@ const Nav = () => {
 				<li>
 					<Link to={"/up-down"}>Download Upload</Link>
 				</li>
+				<li>
+					<Link to={"/pdf"}>PDF</Link>
+				</li>
 			</ul>
 		</div>
 	);
