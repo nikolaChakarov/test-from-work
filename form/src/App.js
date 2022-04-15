@@ -10,15 +10,17 @@ import UploadDownload from "./components/UploadDownload/UploadDownload";
 
 import PdfCreator from "./components/PdfCreator/PdfCreator";
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import UseCallbackFunc from "./components/UseCallback";
+import UseMemoFunc from "./components/UseMemo";
 
 const App = () => {
 	return (
 		<div className="" id="main-app">
 			<Sidebar />
 			<div className="app-body container-fluid">
-				<PDFDownloadLink document={<PdfCreator />} fileName="test">
+				{/* <PDFDownloadLink document={<PdfCreator />} fileName="test">
 					{({ loading }) => (!loading ? "loading..." : "download pdf")}
-				</PDFDownloadLink>
+				</PDFDownloadLink> */}
 
 				<Switch>
 					<Route path={"/form"} component={Form} />
@@ -26,6 +28,8 @@ const App = () => {
 					<Route path={"/layout02"} component={LayoutInnerScroll2} />
 					<Route path={"/flex-box"} component={FlexBoxTraversyMedia} />
 					<Route path={"/up-down"} component={UploadDownload} />
+					<Route path={"/use-callback"} component={UseCallbackFunc} />
+					<Route path={"/use-memo"} component={UseMemoFunc} />
 					{/* <Route path={"/pdf"} component={PdfCreator} /> */}
 				</Switch>
 			</div>

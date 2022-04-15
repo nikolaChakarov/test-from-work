@@ -26,6 +26,12 @@ const Nav = () => {
 				<li>
 					<Link to={"/pdf"}>PDF</Link>
 				</li>
+				<li>
+					<Link to={"/use-callback"}>CallBack</Link>
+				</li>
+				<li>
+					<Link to={"/use-memo"}>Memo</Link>
+				</li>
 			</ul>
 		</div>
 	);
