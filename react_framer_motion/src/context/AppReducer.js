@@ -16,6 +16,25 @@ const AppReducer = (state, action) => {
 					toppings: [action.payload, ...state.pizza.toppings],
 				},
 			};
+		case "REMOVE_TOPPING":
+			return {
+				...state,
+				pizza: {
+					...state.pizza,
+					toppings: [
+						...state.pizza.toppings.filter((el) => el !== action.payload),
+					],
+				},
+			};
+
+		case "REMOVE_TOPPINGS":
+			return {
+				...state,
+				pizza: {
+					...state.pizza,
+					toppings: [],
+				},
+			};
 		case "ADD_ORDER":
 			return {
 				...state,

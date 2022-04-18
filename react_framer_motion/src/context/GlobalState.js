@@ -8,6 +8,7 @@ const init = {
 	},
 	addBase: (base) => {},
 	addTopping: (topping) => {},
+	removeTopping: (topping) => {},
 	addOrder: (order) => {},
 	orders: localStorage.getItem("orders")
 		? JSON.parse(localStorage.getItem("orders"))
@@ -33,6 +34,13 @@ export const GlobalProvider = ({ children }) => {
 		});
 	};
 
+	const removeTopping = (topping) => {
+		dispatch({
+			type: "REMOVE_TOPPING",
+			payload: topping,
+		});
+	};
+
 	const addOrder = (order) => {
 		dispatch({
 			type: "ADD_ORDER",
@@ -41,7 +49,6 @@ export const GlobalProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		console.log(state.orders);
 		localStorage.setItem("orders", JSON.stringify(state.orders));
 	}, [state.orders]);
 
@@ -52,7 +59,9 @@ export const GlobalProvider = ({ children }) => {
 				orders: state.orders,
 				addBase,
 				addTopping,
+				removeTopping,
 				addOrder,
+				dispatch,
 			}}
 		>
 			{children}

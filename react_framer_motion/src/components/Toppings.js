@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { GlobalContext } from "../context/GlobalState";
 
 const Toppings = () => {
-	const { pizza, addTopping, addOrder } = useContext(GlobalContext);
+	const { pizza, addTopping, removeTopping, addOrder, dispatch } =
+		useContext(GlobalContext);
+	const [spanClass, setSpanClass] = useState({});
 
 	let toppings = [
 		"mushrooms",
@@ -15,15 +17,34 @@ const Toppings = () => {
 		"tomatoes",
 	];
 
+	const toggleTopping = (el) => {
+		const currentTopping = el.currentTarget.dataset.name;
+
+		if (!pizza.toppings.includes(currentTopping)) {
+			addTopping(currentTopping);
+			setSpanClass((prev) => ({ ...prev, [currentTopping]: "active" }));
+		} else {
+			removeTopping(currentTopping);
+			setSpanClass((prev) => ({ ...prev, [currentTopping]: "" }));
+		}
+	};
+
+	useEffect(() => {
+		dispatch({
+			type: "REMOVE_TOPPINGS",
+		});
+	}, []);
+
 	return (
 		<div className="toppings container">
 			<h3>Step 2: Choose Toppings</h3>
 			<ul>
 				{toppings.map((topping) => {
-					let spanClass = pizza.toppings.includes(topping) ? "active" : "";
 					return (
-						<li key={topping} onClick={() => addTopping(topping)}>
-							<span className={spanClass}>{topping}</span>
+						<li key={topping} onClick={toggleTopping} data-name={topping}>
+							<span className={`${spanClass[topping] ? "active" : ""}`}>
+								{topping}
+							</span>
 						</li>
 					);
 				})}
