@@ -8,6 +8,15 @@ const AppReducer = (state, action) => {
 					base: action.payload,
 				},
 			};
+		case "REMOVE_BASE":
+			return {
+				...state,
+				pizza: {
+					base: "",
+					toppings: [],
+				},
+			};
+
 		case "ADD_TOPPING":
 			return {
 				...state,

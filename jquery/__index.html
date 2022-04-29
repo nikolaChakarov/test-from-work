@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>handlebars</title>
+
+		<style type="text/css">
+			.redText {
+				color: red;
+			}
+			.blueText {
+				color: blue;
+			}
+			.greenText {
+				color: green;
+			}
+		</style>
+
+		<script defer src="./handlebars.min-v4.7.7.js"></script>
+		<script type="module" src="./script.js"></script>
+	</head>
+	<body>
+		<div id="data"></div>
+
+		<script id="quotes-template" type="text/x-handlebars-template">
+			<h3>Favourites {{name}} Quotes</h3>
+
+			<ol>
+				{{#each quotes}}
+					<li>{{quote}}</li>
+				{{/each}}
+			</ol>
+
+			{{{bio}}}
+
+			{{makeLink "some text for link..." "https://www.abv.bg"}}
+			<br />
+
+			{{changeColor "Make my text red" color="blue"}}
+			<br />
+
+			{{sayHello}}
+		</script>
+	</body>
+</html>
