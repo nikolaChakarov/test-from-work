@@ -39,6 +39,8 @@ const Debounce = () => {
 	return (
 		<div>
 			<h1>Debounce</h1>
+			<h5>...look the console</h5>
+
 			<hr
 				style={{
 					margin: "20px 0",
