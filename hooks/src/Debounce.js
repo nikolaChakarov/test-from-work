@@ -1,41 +1,40 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { fakeNames } from "./data/db";
+import useDebounce from "./hooks/debounce";
 
 const Debounce = () => {
-	const [query, setQuery] = useState("");
-
 	let filteredNames = fakeNames;
 
-	if (query !== "") {
-		filteredNames = filteredNames.filter((el) =>
-			el.toLowerCase().includes(query.toLowerCase())
-		);
-	}
+	// input value
+	const [query, setQuery] = useState("");
+	const [results, setResults] = useState([]);
 
-	const changeHandler = (e) => {
-		console.log(e.target);
+	// with no debounce!
+	// if (query !== "") {
+	// 	filteredNames = filteredNames.filter((el) =>
+	// 		el.toLowerCase().includes(query.toLowerCase())
+	// 	);
+	// }
+
+	const onInputChange = (e) => {
 		setQuery(e.target.value);
 	};
 
-	const debounceFunc = (func, delay) => {
-		let intervalID;
+	const debouncedInputValue = useDebounce(query, 500);
 
-		return function () {
-			console.log(this);
-			const self = this;
-			const args = arguments;
+	useEffect(() => {
+		if (debouncedInputValue) {
+			console.log(debouncedInputValue);
 
-			clearInterval(intervalID);
-
-			intervalID = setInterval(() => {
-				func.apply(self, args);
-			}, delay);
-		};
-	};
-
-	const deb = useCallback(() => {
-		debounceFunc(changeHandler, 1000);
-	}, [query]);
+			setResults((prev) => [
+				...filteredNames.filter((el) =>
+					el.toLowerCase().includes(query.toLowerCase())
+				),
+			]);
+		} else {
+			setResults([...filteredNames]);
+		}
+	}, [debouncedInputValue]);
 
 	return (
 		<div>
@@ -46,13 +45,20 @@ const Debounce = () => {
 				}}
 			/>
 
-			<input type="text" onChange={deb} value={query} />
+			<input type="text" onChange={onInputChange} />
 
-			{filteredNames.map((el, i) => (
+			{/* with no debounce */}
+			{/* {filteredNames.map((el, i) => (
 				<div key={i}>{el}</div>
 			))}
 
-			<div>{filteredNames.length === 0 && query !== "" && "No matches..."}</div>
+			<div>{filteredNames.length === 0 && query !== "" && "No matches..."}</div> */}
+
+			{results.map((el, i) => (
+				<div key={i}>{el}</div>
+			))}
+
+			<div>{results.length === 0 && query !== "" && "No matches..."}</div>
 		</div>
 	);
 };
