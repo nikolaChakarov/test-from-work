@@ -1,11 +1,45 @@
-$(document).ready(function () {
-	$("h3").css({ border: "3px dashed red" });
+window.onload = async function () {
+	const db = await (
+		await fetch("https://jsonplaceholder.typicode.com/users")
+	).json();
 
-	$(".wrapper").css({ border: "3px dashed green" });
+	console.log(db);
 
-	$("header nav li:first").css({ border: "3px dashed yellow" });
+	let input = document.querySelector("#search-el");
+	const ulEl = document.querySelector(".list");
 
-	$("section:not('#points-of-sale')").css({ background: "red" });
+	console.log(ulEl);
 
-	$("#social-nav li:gt(2)").css({ border: "3px dashed yellow" });
-});
+	const onChangeDebounced = debounce(onChange, 500);
+
+	input.addEventListener("keyup", onChangeDebounced);
+
+	function onChange(e) {
+		console.log(e.target.value);
+
+		let res = db.filter((el) =>
+			el.name.toLowerCase().includes(e.target.value.toLowerCase())
+		);
+
+		ulEl.innerHTML = "";
+		res.forEach((el) => {
+			const li = document.createElement("li");
+			li.innerText = el.name;
+			ulEl.appendChild(li);
+		});
+	}
+
+	function debounce(fn, delay) {
+		let timer;
+
+		return function () {
+			const cb = () => {
+				fn.apply(this, arguments);
+			};
+
+			clearTimeout(timer);
+
+			timer = setTimeout(cb, delay);
+		};
+	}
+};

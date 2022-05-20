@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="./evetn_constructor.js" defer></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<h1 id="elem">Hello from John</h1>
+	</body>
+
+	<script>
+		elem.addEventListener("hello", function (ev) {
+			alert(ev.detail.name);
+		});
+
+		elem.dispatchEvent(
+			new CustomEvent("hello", {
+				detail: { name: "John" },
+			})
+		);
+	</script>
+</html>
