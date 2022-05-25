@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 let id = 0;
 const db = Array.from(
-	new Array(10).fill("").map((el) => {
+	new Array(100).fill("").map((el) => {
 		id++;
 		return {
 			id,

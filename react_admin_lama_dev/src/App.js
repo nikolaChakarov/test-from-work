@@ -2,6 +2,8 @@ import Topbar from "./components/Topbar/Topbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Info from "./components/Info/Info";
 
+import CircularStatic from "./components/Progress/Progress";
+
 import styled from "styled-components";
 
 const App = () => {
@@ -10,7 +12,7 @@ const App = () => {
 			<Topbar />
 			<InnerAppWrapper>
 				<Sidebar />
-				<Info />
+				<CircularStatic />
 			</InnerAppWrapper>
 		</AppContainer>
 	);
