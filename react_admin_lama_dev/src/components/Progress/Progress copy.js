@@ -20,18 +20,29 @@ export default function CircularStatic() {
 		}, 1000);
 	};
 
+	const stopCounter = () => {
+		clearInterval(timer.current);
+		setCount(3);
+	};
+
 	console.log(timer.current);
 
 	useEffect(() => {
-		startCounter();
-		return () => clearInterval(timer.current);
+		return stopCounter();
 	}, []);
 
 	return (
 		<>
-			<span>hold for:</span>
+			<p
+				onMouseDown={startCounter}
+				onMouseUp={stopCounter}
+				onMouseLeave={stopCounter}
+				style={{ cursor: "pointer" }}
+			>
+				Click...
+			</p>
+			{/* <p>{count}</p> */}
 			<CircularProgressWithLabel value={count * 33} />
-			<span>seconds!</span>
 		</>
 	);
 }

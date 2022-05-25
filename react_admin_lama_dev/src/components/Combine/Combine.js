@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
+import CircularStatic from "../Progress/Progress";
+
 let id = 0;
 const db = Array.from(
 	new Array(20).fill("").map((el) => {
@@ -17,25 +19,29 @@ const Combine = () => {
 	const [showLiItemCounter, setShowLiItemCounter] = useState(0);
 	const [itemId, setItemId] = useState(null);
 
+	const [showSpinner, setShowSpinner] = useState({});
+
 	const handlerStartCounter = (e) => {
+		// this if -> not to whait when we close the LI
 		if (showLiItemCounter > 0) {
 			setShowLiItem({});
 			setShowLiItemCounter(0);
 			return;
 		}
 
-		if (showLiTimer.current) return;
+		setShowSpinner({ [e.target.dataset.id]: true });
 
 		showLiTimer.current = setInterval(() => {
 			setShowLiItemCounter((prev) => prev + 1);
 			setItemId(e.target.dataset.id);
-		}, 2000);
+		}, 3000);
 	};
 
 	const handlerStopCounter = () => {
 		clearInterval(showLiTimer.current);
 		showLiTimer.current = null;
 		setItemId(null);
+		setShowSpinner({});
 	};
 
 	const onItemClick = (id) => {
@@ -66,6 +72,8 @@ const Combine = () => {
 							onMouseLeave={handlerStopCounter}
 						>
 							{el.id}
+
+							{showSpinner[el.id] && <CircularStatic />}
 						</li>
 
 						{showLiItem[el.id] && (
@@ -91,6 +99,11 @@ const CombineContainer = styled.section`
 			margin: 5px;
 			border: 1px solid;
 			cursor: pointer;
+			position: relative;
+
+			.spinner {
+				position: absolute;
+			}
 		}
 	}
 `;
