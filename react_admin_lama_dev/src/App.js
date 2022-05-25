@@ -1,8 +1,7 @@
 import Topbar from "./components/Topbar/Topbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Info from "./components/Info/Info";
-
-import CircularStatic from "./components/Progress/Progress";
+import Combine from "./components/Combine/Combine";
 
 import styled from "styled-components";
 
@@ -12,7 +11,7 @@ const App = () => {
 			<Topbar />
 			<InnerAppWrapper>
 				<Sidebar />
-				<CircularStatic />
+				<Combine />
 			</InnerAppWrapper>
 		</AppContainer>
 	);
