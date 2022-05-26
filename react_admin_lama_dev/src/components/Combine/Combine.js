@@ -2,16 +2,31 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import CircularStatic from "../Progress/Progress";
+import ReactPaginate from "react-paginate";
 
 let id = 0;
 const db = Array.from(
-	new Array(20).fill("").map((el) => {
+	new Array(400).fill("").map((el) => {
 		id++;
 		return { id, name: "item id: " + id };
 	})
 );
 
 const Combine = () => {
+	// pagination https://www.youtube.com/watch?v=HANSMtDy508
+	/* which page we are in */
+	const [data, setData] = useState(db);
+	const [pageNumber, setPageNumber] = useState(0);
+	const itemsPerPage = 4;
+	const pagesVisited = pageNumber * itemsPerPage;
+	const pageCount = Math.ceil(data.length / itemsPerPage);
+
+	const displayItems = data.slice(pagesVisited, pagesVisited + itemsPerPage);
+	const changePage = ({ selected }) => {
+		setPageNumber(selected);
+	};
+	/* end pagination */
+
 	/* li handlers */
 	let showLiTimer = useRef(null);
 
@@ -63,7 +78,7 @@ const Combine = () => {
 	return (
 		<CombineContainer className="temp">
 			<ul>
-				{db.map((el, i) => (
+				{displayItems.map((el, i) => (
 					<React.Fragment key={i}>
 						<li
 							data-id={el.id}
@@ -73,11 +88,15 @@ const Combine = () => {
 						>
 							{el.id}
 
-							{showSpinner[el.id] && <CircularStatic />}
+							{showSpinner[el.id] && (
+								<div className="spinner">
+									<CircularStatic />
+								</div>
+							)}
 						</li>
 
 						{showLiItem[el.id] && (
-							<ItemContainer>
+							<ItemContainer style={{ opacity: 1, visibility: "visible" }}>
 								<span>
 									This ID: {el.id} has this name: {el.name}
 								</span>
@@ -86,11 +105,29 @@ const Combine = () => {
 					</React.Fragment>
 				))}
 			</ul>
+
+			<ReactPaginate
+				previousLabel={"Previous"}
+				marginPagesDisplayed={2}
+				nextLabel={"Next"}
+				pageCount={pageCount}
+				onPageChange={changePage}
+				containerClassName={"pagination-container"}
+				previousLinkClassName={"pagination-btn"}
+				nextLinkClassName={"pagination-btn"}
+				activeClassName={"pagination-active"}
+				pageClassName={"pagination-page"}
+				pageLinkClassName={"pagination-page-link"}
+				breakClassName={"break"}
+				breakLinkClassName={"break"}
+			/>
 		</CombineContainer>
 	);
 };
 
 const CombineContainer = styled.section`
+	display: flex;
+	flex-direction: column;
 	ul {
 		list-style: none;
 
@@ -103,8 +140,44 @@ const CombineContainer = styled.section`
 
 			.spinner {
 				position: absolute;
+				right: 5px;
+				top: 5px;
 			}
 		}
+	}
+
+	.break {
+		background: red;
+	}
+
+	.pagination-container {
+		display: flex;
+		justify-content: center;
+		margin-top: auto;
+		width: 50%;
+
+		* {
+			padding: 0;
+			margin: 0;
+		}
+	}
+
+	.pagination-page {
+		width: 50px;
+		height: 30px;
+		display: flex;
+		margin: 0 5px;
+	}
+
+	.pagination-page-link {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.pagination-active {
+		background: #dedede;
 	}
 `;
 
@@ -113,6 +186,10 @@ const ItemContainer = styled.div`
 	margin: 5px;
 	display: flex;
 	border: 2px dashed red;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 2s ease-in-out;
+	transition-duration: 4s;
 `;
 
 export default Combine;
