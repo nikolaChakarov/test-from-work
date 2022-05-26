@@ -17,7 +17,7 @@ const Combine = () => {
 	/* which page we are in */
 	const [data, setData] = useState(db);
 	const [pageNumber, setPageNumber] = useState(0);
-	const itemsPerPage = 4;
+	const itemsPerPage = 16;
 	const pagesVisited = pageNumber * itemsPerPage;
 	const pageCount = Math.ceil(data.length / itemsPerPage);
 
@@ -77,7 +77,7 @@ const Combine = () => {
 
 	return (
 		<CombineContainer className="temp">
-			<ul>
+			<ul className="list-items">
 				{displayItems.map((el, i) => (
 					<React.Fragment key={i}>
 						<li
@@ -128,6 +128,17 @@ const Combine = () => {
 const CombineContainer = styled.section`
 	display: flex;
 	flex-direction: column;
+
+	ul.list-items {
+		display: flex;
+		flex-wrap: wrap;
+
+		li {
+			width: 20%;
+			margin: 5px;
+		}
+	}
+
 	ul {
 		list-style: none;
 
@@ -178,6 +189,15 @@ const CombineContainer = styled.section`
 
 	.pagination-active {
 		background: #dedede;
+	}
+
+	@media (max-width: 576px) {
+		ul.list-items {
+			li {
+				width: 100%;
+				margin: 5px;
+			}
+		}
 	}
 `;
 
