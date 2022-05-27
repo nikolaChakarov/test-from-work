@@ -2,7 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import CircularStatic from "../Progress/Progress";
-import ReactPaginate from "react-paginate";
+import Pagination from "react-js-pagination";
+
+import {
+	FirstPage,
+	LastPage,
+	ChevronLeftOutlined,
+	ChevronRightOutlined,
+} from "@mui/icons-material";
 
 let id = 0;
 const db = Array.from(
@@ -16,16 +23,26 @@ const Combine = () => {
 	// pagination https://www.youtube.com/watch?v=HANSMtDy508
 	/* which page we are in */
 	const [data, setData] = useState(db);
-	const [pageNumber, setPageNumber] = useState(0);
-	const itemsPerPage = 16;
-	const pagesVisited = pageNumber * itemsPerPage;
-	const pageCount = Math.ceil(data.length / itemsPerPage);
+	// const [pageNumber, setPageNumber] = useState(1);
+	// const itemsPerPage = 16;
+	// const pagesVisited = pageNumber * itemsPerPage;
+	// const pageCount = Math.ceil(data.length / itemsPerPage);
 
-	const displayItems = data.slice(pagesVisited, pagesVisited + itemsPerPage);
-	const changePage = ({ selected }) => {
-		setPageNumber(selected);
-	};
+	// const displayItems = data.slice(pagesVisited, pagesVisited + itemsPerPage);
+	// const changePage = (num) => {
+	// 	console.log(num);
+	// 	setPageNumber(num);
+	// };
 	/* end pagination */
+
+	const [activePage, setActivePage] = useState(1);
+	const itemsPerPage = 12;
+	const pagesVisited = (activePage - 1) * itemsPerPage;
+	const displayItems = data.slice(pagesVisited, pagesVisited + itemsPerPage);
+
+	const changePage = (num) => {
+		setActivePage(num);
+	};
 
 	/* li handlers */
 	let showLiTimer = useRef(null);
@@ -106,20 +123,24 @@ const Combine = () => {
 				))}
 			</ul>
 
-			<ReactPaginate
-				previousLabel={"Previous"}
-				marginPagesDisplayed={2}
-				nextLabel={"Next"}
-				pageCount={pageCount}
-				onPageChange={changePage}
-				containerClassName={"pagination-container"}
-				previousLinkClassName={"pagination-btn"}
-				nextLinkClassName={"pagination-btn"}
-				activeClassName={"pagination-active"}
-				pageClassName={"pagination-page"}
-				pageLinkClassName={"pagination-page-link"}
-				breakClassName={"break"}
-				breakLinkClassName={"break"}
+			<Pagination
+				totalItemsCount={data.length}
+				onChange={changePage}
+				activePage={activePage}
+				itemsCountPerPage={itemsPerPage}
+				pageRangeDisplayed={3}
+				firstPageText={<FirstPage />}
+				prevPageText={<ChevronLeftOutlined />}
+				lastPageText={<LastPage />}
+				nextPageText={<ChevronRightOutlined />}
+				innerClass={"pagination-container"}
+				itemClass={"pagination-item"}
+				linkClass={"pagination-link"}
+				itemClassFirst={"pagination-btn-end"}
+				itemClassLast={"pagination-btn-end"}
+				itemClassNext={"pagination-btn"}
+				itemClassPrev={"pagination-btn"}
+				activeLinkClass={"pagination-active"}
 			/>
 		</CombineContainer>
 	);
@@ -162,40 +183,42 @@ const CombineContainer = styled.section`
 	}
 
 	.pagination-container {
-		display: flex;
-		justify-content: center;
-		margin-top: auto;
-		width: 50%;
-
 		* {
 			padding: 0;
 			margin: 0;
 		}
-	}
-
-	.pagination-page {
-		width: 50px;
-		height: 30px;
-		display: flex;
-		margin: 0 5px;
-	}
-
-	.pagination-page-link {
-		flex: 1;
 		display: flex;
 		justify-content: center;
-		align-items: center;
-	}
+		margin-top: auto;
+		margin-bottom: 20px;
 
-	.pagination-active {
-		background: #dedede;
-	}
+		.pagination-item {
+			border: 1px groove #fff;
+			width: 50px;
+			height: 30px;
+			display: flex;
+			margin-right: 10px;
+			&:last-of-type {
+				margin-right: 0;
+			}
+		}
 
-	@media (max-width: 576px) {
-		ul.list-items {
-			li {
-				width: 100%;
-				margin: 5px;
+		.pagination-link {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			color: #333;
+		}
+
+		.pagination-active {
+			background: #333;
+			color: #fff;
+			transition: all 0.2s ease-in-out;
+
+			&:hover {
+				box-shadow: inset 0px 0px 5px red;
 			}
 		}
 	}
