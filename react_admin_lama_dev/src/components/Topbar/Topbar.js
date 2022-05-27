@@ -30,6 +30,7 @@ const Topbar = () => {
 };
 
 const TopBarWrapper = styled.section`
+	/* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
 	height: 50px;
 	display: flex;
 	justify-content: space-between;
@@ -39,7 +40,9 @@ const TopBarWrapper = styled.section`
 	top: 0;
 	z-index: 1000;
 	background: #fff;
-	box-shadow: ${({ bg }) => (bg > 0 ? "0 3px 6px rgba(0, 0, 0, 0.1)" : "none")};
+	border-bottom: 1px groove #fff;
+	/* box-shadow: ${({ bg }) =>
+		bg > 0 ? "0 3px 6px rgba(0, 0, 0, 0.1)" : "none"}; */
 	transition: all 0.5s ease-in-out;
 
 	.right {
