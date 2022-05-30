@@ -1,0 +1,51 @@
+body {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	margin: 0;
+}
+
+.container {
+	width: 50vh;
+	border-radius: 5px;
+	border: 1px solid lightseagreen;
+}
+
+.login {
+	height: 50vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+input {
+	width: 50%;
+	padding: 10px;
+	margin-bottom: 20px;
+	outline: none;
+}
+
+button {
+	width: 60%;
+	padding: 10px;
+	background-color: lightseagreen;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.logout-bttn {
+	min-width: 100px;
+}
+
+.username {
+	font-weight: bold;
+	color: lightseagreen;
+	position: absolute;
+	top: 15px;
+	right: 20px;
+}
