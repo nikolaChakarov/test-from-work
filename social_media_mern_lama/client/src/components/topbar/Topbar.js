@@ -6,19 +6,17 @@ import useDebounce from "../../hooks/useDebounce";
 
 import { Chat, Notifications, Person, Search } from "@mui/icons-material";
 
-const Topbar = () => {
+const Topbar = ({ scrollY }) => {
 	const { values, handleInputChange } = useForm(null, {
 		search: "",
 	});
 
 	const debounced = useDebounce(values.search, 1000);
 
-	useEffect(() => {
-		console.log(values);
-	}, [debounced]);
+	useEffect(() => {}, [debounced]);
 
 	return (
-		<TopbarContainer>
+		<TopbarContainer scrollY={scrollY}>
 			<div className="topbar-left">
 				<span className="logo">logo</span>
 			</div>
@@ -69,11 +67,14 @@ const Topbar = () => {
 
 const TopbarContainer = styled.div`
 	height: 50px;
-	background: #00a1e0;
+	background: var(--main-color);
 	display: flex;
 	align-items: center;
 	position: sticky;
 	top: 0;
+	box-shadow: ${({ scrollY }) =>
+		scrollY > 0 ? "0px 3px 3px 0px rgba(0, 0, 0, .3)" : "none"};
+	transition: all 0.5s ease-in-out;
 
 	.topbar-left {
 		flex: 3;
@@ -91,7 +92,7 @@ const TopbarContainer = styled.div`
 		flex: 5;
 
 		.searchbar {
-			box-shadow: inset 0px 2px 2px 1px rgba(0, 0, 0, 0.5);
+			box-shadow: inset 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
 			width: 100%;
 			height: 30px;
 			background: #fff;
@@ -160,8 +161,7 @@ const TopbarContainer = styled.div`
 	}
 
 	.toolbar-image-wrapper {
-		box-shadow: inset 0px 2px 2px 1px rgba(0, 0, 0, 0.5);
-
+		box-shadow: inset 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
 		border-radius: 50%;
 		cursor: pointer;
 	}

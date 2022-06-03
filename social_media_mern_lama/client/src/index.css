@@ -1,3 +1,7 @@
+:root {
+	--main-color: #00a1e0;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -11,4 +15,8 @@ input {
 
 ul {
 	list-style: none;
+}
+
+a {
+	text-decoration: none;
 }
