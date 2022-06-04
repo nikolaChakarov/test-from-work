@@ -80,6 +80,7 @@ const PostContainer = styled.div`
 			margin: 20px 0;
 
 			.post-image {
+				width: 100%;
 				margin-top: 20px;
 				max-height: 500px;
 				object-fit: contain;
