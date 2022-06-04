@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-import useForm from "../../hooks/useForm";
-import useDebounce from "../../hooks/useDebounce";
+import useForm from "../hooks/useForm";
+import useDebounce from "../hooks/useDebounce";
 
 import { Chat, Notifications, Person, Search } from "@mui/icons-material";
 

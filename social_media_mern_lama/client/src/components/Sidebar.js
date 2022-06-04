@@ -197,7 +197,6 @@ const SidebarContainer = styled.div`
 	background: #eaeaea;
 	overflow-y: scroll;
 
-	*::-webkit-scrollbar,
 	&::-webkit-scrollbar {
 		display: none;
 	}
@@ -206,6 +205,10 @@ const SidebarContainer = styled.div`
 		display: flex;
 		flex-direction: column;
 		overflow-y: scroll;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
 
 		ul.sidebar-list {
 			display: flex;
@@ -260,6 +263,19 @@ const SidebarContainer = styled.div`
 			color: #fff;
 			background: #8d8d8d;
 			box-shadow: inset 0px 2px 1px 0px rgba(0, 0, 0, 0.5);
+
+			&::-webkit-scrollbar {
+				width: 5px;
+			}
+
+			&::-webkit-scrollbar-track {
+				background: #f1f1f1;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				background: #777;
+				border-radius: 5px;
+			}
 
 			li.sidebar-friend {
 				padding: 20px;

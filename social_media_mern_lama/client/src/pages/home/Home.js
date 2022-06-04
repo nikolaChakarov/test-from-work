@@ -3,10 +3,10 @@ import styled from "styled-components";
 
 import useScroll from "../../hooks/useScroll";
 
-import Topbar from "../../components/topbar/Topbar";
-import Sidebar from "../../components/topbar/Sidebar";
-import Feed from "../../components/topbar/Feed";
-import Rightbar from "../../components/topbar/Rightbar";
+import Topbar from "../../components/Topbar";
+import Sidebar from "../../components/Sidebar";
+import Feed from "../../components/Feed";
+import Rightbar from "../../components/Rightbar";
 
 const Home = () => {
 	const scrollY = useScroll();
