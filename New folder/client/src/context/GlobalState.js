@@ -4,9 +4,9 @@ import AppReducer from "./AppReducer";
 import { Posts, Users } from "../dummyData";
 
 const init = {
-	users: [],
+	user: null,
 	posts: [],
-	getAllUsers: () => {},
+	getUser: (id) => {},
 	getAllPosts: () => {},
 };
 
@@ -15,10 +15,13 @@ export const GlobalContext = createContext(init);
 export const GlobalProvider = ({ children }) => {
 	const [appState, dispatch] = useReducer(AppReducer, init);
 
-	const getAllUsers = () => {
+	const getUser = (id) => {
+		// console.log(id);
+		const currentUser = Users.find((el) => el.id === id);
+
 		dispatch({
-			type: "GET_ALL_USERS",
-			payload: Users,
+			type: "USER",
+			payload: currentUser,
 		});
 	};
 
@@ -39,9 +42,9 @@ export const GlobalProvider = ({ children }) => {
 		<GlobalContext.Provider
 			value={{
 				posts: appState.posts,
-				users: appState.users,
+				user: appState.user,
 				dispatch,
-				getAllUsers,
+				getUser,
 				getAllPosts,
 			}}
 		>

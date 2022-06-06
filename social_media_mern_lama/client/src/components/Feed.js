@@ -1,16 +1,24 @@
+import { useEffect, useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
 import styled from "styled-components";
 import Post from "./Post";
 import Share from "./Share";
 
 const Feed = () => {
+	const { posts, getAllPosts } = useContext(GlobalContext);
+
+	useEffect(() => {
+		getAllPosts();
+	}, []);
+
 	return (
 		<FeedContainer>
 			<div className="feed-wrapper">
 				<Share />
 				<div className="feed-posts-wrapper">
-					<Post />
-					<Post />
-					<Post />
+					{posts.map((data, i) => (
+						<Post key={i} {...data} />
+					))}
 				</div>
 			</div>
 		</FeedContainer>

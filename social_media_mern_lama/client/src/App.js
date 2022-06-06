@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import Home from "./pages/home/Home";
+import Profile from "./pages/profile/Profile";
 
 const App = () => {
 	return (
 		<AppContainer>
-			<Home />
+			<Profile />
 		</AppContainer>
 	);
 };

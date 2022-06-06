@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {
@@ -14,6 +15,8 @@ import {
 } from "@mui/icons-material";
 
 const Sidebar = () => {
+	const { users } = useContext(GlobalContext);
+
 	const [showMore, setShowMore] = useState(false);
 
 	const handleShowMore = () => {
@@ -94,95 +97,16 @@ const Sidebar = () => {
 
 				{showMore && (
 					<ul className="sidebar-friend-list">
-						<li className="sidebar-friend">
-							<img
-								src="/assets/person/2.jpeg"
-								alt=""
-								className="sidebar-friend-img"
-							/>
-							<span className="sidebar-friend-name">Marko Pollo</span>
-						</li>
-
-						<li className="sidebar-friend">
-							<img
-								src="/assets/person/2.jpeg"
-								alt=""
-								className="sidebar-friend-img"
-							/>
-							<span className="sidebar-friend-name">Marko Pollo</span>
-						</li>
-
-						<li className="sidebar-friend">
-							<img
-								src="/assets/person/2.jpeg"
-								alt=""
-								className="sidebar-friend-img"
-							/>
-							<span className="sidebar-friend-name">Marko Pollo</span>
-						</li>
-
-						<li className="sidebar-friend">
-							<img
-								src="/assets/person/2.jpeg"
-								alt=""
-								className="sidebar-friend-img"
-							/>
-							<span className="sidebar-friend-name">Marko Pollo</span>
-						</li>
-
-						<li className="sidebar-friend">
-							<img
-								src="/assets/person/2.jpeg"
-								alt=""
-								className="sidebar-friend-img"
-							/>
-							<span className="sidebar-friend-name">Marko Pollo</span>
-						</li>
-
-						<li className="sidebar-friend">
-							<img
-								src="/assets/person/2.jpeg"
-								alt=""
-								className="sidebar-friend-img"
-							/>
-							<span className="sidebar-friend-name">Marko Pollo</span>
-						</li>
-
-						<li className="sidebar-friend">
-							<img
-								src="/assets/person/2.jpeg"
-								alt=""
-								className="sidebar-friend-img"
-							/>
-							<span className="sidebar-friend-name">Marko Pollo</span>
-						</li>
-
-						<li className="sidebar-friend">
-							<img
-								src="/assets/person/2.jpeg"
-								alt=""
-								className="sidebar-friend-img"
-							/>
-							<span className="sidebar-friend-name">Marko Pollo</span>
-						</li>
-
-						<li className="sidebar-friend">
-							<img
-								src="/assets/person/2.jpeg"
-								alt=""
-								className="sidebar-friend-img"
-							/>
-							<span className="sidebar-friend-name">Marko Pollo</span>
-						</li>
-
-						<li className="sidebar-friend">
-							<img
-								src="/assets/person/2.jpeg"
-								alt=""
-								className="sidebar-friend-img"
-							/>
-							<span className="sidebar-friend-name">Marko Pollo</span>
-						</li>
+						{users.map((user, i) => (
+							<li className="sidebar-friend" key={i}>
+								<img
+									src={user.profilePicture}
+									alt=""
+									className="sidebar-friend-img"
+								/>
+								<span className="sidebar-friend-name">{user.username}</span>
+							</li>
+						))}
 					</ul>
 				)}
 			</div>
