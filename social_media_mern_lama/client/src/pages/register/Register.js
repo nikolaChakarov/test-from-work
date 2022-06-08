@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../../context/GlobalState";
 import styled from "styled-components";
 
+import useForm from "../../hooks/useForm";
+
 const Register = () => {
+	const navigate = useNavigate();
+	const { registerUser, registerError, user } = useContext(GlobalContext);
+
+	const { values, handleInputChange, handleSubmit } = useForm(sendData, {
+		username: "",
+		email: "",
+		password: "",
+		password2: "",
+	});
+
+	function sendData() {
+		registerUser(values);
+	}
+
+	useEffect(() => {
+		if (registerError === "" && user) {
+			navigate("/");
+		}
+	}, [user, registerError]);
+
 	return (
 		<RegisterContainer>
 			<div className="register-wrapper">
@@ -17,19 +41,37 @@ const Register = () => {
 							type="text"
 							placeholder="Username"
 							className="register-input"
+							name="username"
+							value={values.username}
+							onChange={handleInputChange}
 						/>
-						<input type="text" placeholder="Email" className="register-input" />
+						<input
+							type="text"
+							placeholder="Email"
+							className="register-input"
+							name="email"
+							value={values.email}
+							onChange={handleInputChange}
+						/>
 						<input
 							type="text"
 							placeholder="Password"
 							className="register-input"
+							name="password"
+							value={values.password}
+							onChange={handleInputChange}
 						/>
 						<input
 							type="text"
 							placeholder="Password Again"
 							className="register-input"
+							name="password2"
+							value={values.password2}
+							onChange={handleInputChange}
 						/>
-						<button className="register-bttn">Sign Up</button>
+						<button className="register-bttn" onClick={handleSubmit}>
+							Sign Up
+						</button>
 						<button className="register-register-bttn">Log into Account</button>
 					</div>
 				</div>

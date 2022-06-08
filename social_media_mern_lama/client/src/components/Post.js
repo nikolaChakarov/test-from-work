@@ -1,33 +1,37 @@
-import React, { useEffect, useState } from "react";
-// import { GlobalContext } from "../context/GlobalState";
+import React, { useEffect, useState, useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
 import styled from "styled-components";
 import { MoreVert } from "@mui/icons-material";
 
-import { Users } from "../dummyData";
+// import { Users } from "../dummyData";
 
-const Post = ({ desc, photo, date, userId, like, comment }) => {
-	// const { getUser, user, dispatch } = useContext(GlobalContext);
+const Post = (props) => {
+	const { user } = useContext(GlobalContext);
 
-	// useEffect(() => {
-	// 	// getUser(id);
-	// 	console.log(id);
-	// 	dispatch({
-	// 		type: "USER",
-	// 		payload: id,
-	// 	});
-	// }, []);
-	// // console.log(id);
-	// console.log(user);
+	const { likes, userId, date, desc, photo, comment } = props;
 
 	const [userCommented, setUserCommented] = useState({});
-	const fetchUserCommented = (id) => {
-		const current = Users.find((el) => el.id === id);
-		setUserCommented(current);
+
+	const fetchUserCommented = async (id) => {
+		// const current = Users.find((el) => el.id === id);
+		try {
+			const dbRes = await (
+				await fetch(`http://localhost:5005/api/users/${id}`, {
+					headers: {
+						"x-auth-token": user.token,
+					},
+				})
+			).json();
+
+			setUserCommented({ ...dbRes.user });
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	const [liked, setLiked] = useState({
 		click: false,
-		number: like,
+		number: likes.length,
 	});
 
 	const likeHandler = (e) => {
@@ -42,6 +46,8 @@ const Post = ({ desc, photo, date, userId, like, comment }) => {
 			  }));
 	};
 
+	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
 	useEffect(() => {
 		fetchUserCommented(userId);
 	}, []);
@@ -53,7 +59,11 @@ const Post = ({ desc, photo, date, userId, like, comment }) => {
 					<div className="post-top-left">
 						<img
 							className="post-profile-image"
-							src={userCommented.profilePicture}
+							src={
+								userCommented.profilePicture !== ""
+									? PF + userCommented.profilePicture
+									: PF + "person/noAvatar.png"
+							}
 							alt=""
 						/>
 						<span className="post-user-name">{userCommented.username}</span>
@@ -71,13 +81,13 @@ const Post = ({ desc, photo, date, userId, like, comment }) => {
 					<div className="post-bottom-left">
 						<img
 							className="like-icon"
-							src="/assets/like.png"
+							src={PF + "like.png"}
 							alt=""
 							onClick={likeHandler}
 						/>
 						<img
 							className="like-icon"
-							src="/assets/heart.png"
+							src={PF + "heart.png"}
 							alt=""
 							onClick={likeHandler}
 						/>

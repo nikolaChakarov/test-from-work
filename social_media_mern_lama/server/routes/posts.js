@@ -125,7 +125,7 @@ router.get("/:id", isAuth, async (req, res) => {
 });
 
 // get timeline posts
-router.get("/timeline/all", isAuth, async (req, res) => {
+router.get("/timeline/:id", isAuth, async (req, res) => {
 	try {
 		const currentUser = await User.findById(req.user.userId);
 		const currentUserPosts = await Post.find({ userId: currentUser._id });

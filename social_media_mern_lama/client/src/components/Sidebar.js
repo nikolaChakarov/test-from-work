@@ -23,6 +23,8 @@ const Sidebar = () => {
 		setShowMore(!showMore);
 	};
 
+	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
 	return (
 		<SidebarContainer>
 			<div className="sidebar-wrapper">
@@ -100,7 +102,7 @@ const Sidebar = () => {
 						{users.map((user, i) => (
 							<li className="sidebar-friend" key={i}>
 								<img
-									src={user.profilePicture}
+									src={PF + user.profilePicture}
 									alt=""
 									className="sidebar-friend-img"
 								/>

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import useForm from "../hooks/useForm";
@@ -18,7 +19,9 @@ const Topbar = ({ scrollY }) => {
 	return (
 		<TopbarContainer scrollY={scrollY}>
 			<div className="topbar-left">
-				<span className="logo">logo</span>
+				<Link to={"/"}>
+					<span className="logo">logo</span>
+				</Link>
 			</div>
 
 			<div className="topbar-center">

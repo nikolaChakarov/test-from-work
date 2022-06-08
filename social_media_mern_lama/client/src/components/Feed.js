@@ -4,12 +4,20 @@ import styled from "styled-components";
 import Post from "./Post";
 import Share from "./Share";
 
+import { useNavigate } from "react-router-dom";
+
 const Feed = () => {
-	const { posts, getAllPosts } = useContext(GlobalContext);
+	const navigate = useNavigate();
+	const { posts, getAllPosts, user } = useContext(GlobalContext);
 
 	useEffect(() => {
-		getAllPosts();
-	}, []);
+		if (!user) {
+			navigate("/register");
+			return;
+		}
+
+		getAllPosts(user.userId);
+	}, [user]);
 
 	return (
 		<FeedContainer>
