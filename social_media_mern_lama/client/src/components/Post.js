@@ -8,7 +8,7 @@ import { MoreVert } from "@mui/icons-material";
 const Post = (props) => {
 	const { user } = useContext(GlobalContext);
 
-	const { likes, userId, date, desc, photo, comment } = props;
+	const { likes, userId, date, desc, img, comment } = props;
 
 	const [userCommented, setUserCommented] = useState({});
 
@@ -75,7 +75,7 @@ const Post = (props) => {
 				</div>
 				<div className="post-center">
 					<span className="post-text">{desc}</span>
-					<img className="post-image" src={photo} alt="" />
+					<img className="post-image" src={PF + img} alt="" />
 				</div>
 				<div className="post-bottom">
 					<div className="post-bottom-left">
