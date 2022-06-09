@@ -12,10 +12,23 @@ const AppReducer = (state, action) => {
 				...state,
 				registerError: action.payload,
 			};
+
+		case "LOGIN_ERROR":
+			return {
+				...state,
+				loginError: action.payload,
+			};
+
 		case "CLEAR_REGISTER_ERROR":
 			return {
 				...state,
 				registerError: "",
+			};
+
+		case "CLEAR_LOGIN_ERROR":
+			return {
+				...state,
+				loginError: "",
 			};
 
 		case "GET_ALL_USERS":

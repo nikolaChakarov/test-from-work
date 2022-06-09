@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalState";
 import styled from "styled-components";
 
+import { Link } from 'react-router-dom';
+
+
 import useForm from "../../hooks/useForm";
 
 const Register = () => {
@@ -72,7 +75,7 @@ const Register = () => {
 						<button className="register-bttn" onClick={handleSubmit}>
 							Sign Up
 						</button>
-						<button className="register-register-bttn">Log into Account</button>
+						<Link to={'/login'} className="login-link">Log into Account</Link>
 					</div>
 				</div>
 			</div>
@@ -147,7 +150,7 @@ const RegisterContainer = styled.div`
 		color: #1775ee;
 	}
 
-	.register-register-bttn {
+	.login-link {
 		width: 60%;
 		align-self: center;
 		height: 50px;
@@ -158,6 +161,9 @@ const RegisterContainer = styled.div`
 		font-size: 20px;
 		font-weight: 500;
 		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 `;
 

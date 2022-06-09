@@ -10,7 +10,9 @@ const init = {
 	users: [],
 	posts: [],
 	registerUser: (userdata) => {},
+	loginUser: (userdata) => {},
 	registerError: "",
+	loginError: "",
 	getAllUsers: () => {},
 	getAllPosts: () => {},
 };
@@ -88,6 +90,41 @@ export const GlobalProvider = ({ children }) => {
 		}
 	};
 
+	const loginUser = async (userdata) => {
+		try {
+			dispatch({
+				type: "CLEAR_LOGIN_ERROR",
+			});
+
+			const dbRes = await (
+				await fetch("http://localhost:5005/api/auth/login", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(userdata),
+				})
+			).json();
+
+			if (dbRes.status === "fail") {
+				dispatch({
+					type: "LOGIN_ERROR",
+					payload: dbRes.message,
+				});
+				throw dbRes.message;
+			}
+
+			localStorage.setItem("user", JSON.stringify(dbRes.payload));
+
+			dispatch({
+				type: "REGISTER/LOGIN",
+				payload: dbRes.payload,
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	return (
 		<GlobalContext.Provider
 			value={{
@@ -96,7 +133,9 @@ export const GlobalProvider = ({ children }) => {
 				users: appState.users,
 				dispatch,
 				registerUser,
+				loginUser,
 				registerError: appState.registerError,
+				loginError: appState.loginError,
 				getAllUsers,
 				getAllPosts,
 			}}

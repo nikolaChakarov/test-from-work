@@ -42,7 +42,7 @@ router.post("/register", async (req, res) => {
 // Login
 router.post("/login", async (req, res) => {
 	try {
-		const { username, email, password } = req.body;
+		const { email, password } = req.body;
 
 		const user = await User.findOne({ email });
 
@@ -62,11 +62,11 @@ router.post("/login", async (req, res) => {
 
 		res.status(200).json({
 			status: "success",
-			payload: { username, email, userId: user._id, token },
+			payload: { username: user.username, email, userId: user._id, token },
 		});
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({ status: "fail", messge: err });
+		res.status(500).json({ status: "fail", message: err });
 	}
 });
 

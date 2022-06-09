@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { GlobalContext } from "../../context/GlobalState";
 import styled from "styled-components";
 
+import { Link, useNavigate } from "react-router-dom";
+import useForm from "../../hooks/useForm";
+
 const Login = () => {
+	const navigate = useNavigate();
+
+	const { user, loginError, loginUser } = useContext(GlobalContext);
+
+	const { values, handleInputChange, handleSubmit } = useForm(sendData, {
+		email: "",
+		password: "",
+	});
+
+	function sendData() {
+		loginUser(values);
+	}
+
+	useEffect(() => {
+		if (loginError === "" && user) {
+			navigate("/");
+		}
+	}, [user, loginError]);
+
 	return (
 		<LoginContainer>
 			<div className="login-wrapper">
@@ -13,13 +36,29 @@ const Login = () => {
 				</div>
 				<div className="login-right">
 					<div className="login-box">
-						<input type="text" placeholder="email" className="login-input" />
-						<input type="text" placeholder="password" className="login-input" />
-						<button className="login-bttn">Log In</button>
-						<span className="login-forgot">Forgot Pssword?</span>
-						<button className="login-register-bttn">
-							Create a new account
+						<input
+							type="text"
+							placeholder="email"
+							className="login-input"
+							name="email"
+							onChange={handleInputChange}
+							value={values.email}
+						/>
+						<input
+							type="text"
+							placeholder="password"
+							className="login-input"
+							name="password"
+							onChange={handleInputChange}
+							value={values.password}
+						/>
+						<button className="login-bttn" onClick={sendData}>
+							Log In
 						</button>
+						<span className="login-forgot">Forgot Pssword?</span>
+						<Link to={"/register"} className="register-link">
+							Create a new account
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -94,7 +133,7 @@ const LoginContainer = styled.div`
 		color: #1775ee;
 	}
 
-	.login-register-bttn {
+	.register-link {
 		width: 60%;
 		align-self: center;
 		height: 50px;
@@ -105,6 +144,9 @@ const LoginContainer = styled.div`
 		font-size: 20px;
 		font-weight: 500;
 		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 `;
 
