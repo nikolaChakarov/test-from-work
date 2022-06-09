@@ -2,33 +2,42 @@ import React, { useEffect, useState, useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import styled from "styled-components";
 import { MoreVert } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
-// import { Users } from "../dummyData";
+import dayjs from "dayjs";
 
-const Post = (props) => {
-	const { user } = useContext(GlobalContext);
+const Post = ({ post }) => {
+	// const { user } = useContext(GlobalContext);
 
-	const { likes, userId, date, desc, img, comment } = props;
+	// const { likes, userId, date, desc, img, comment } = props;
 
-	const [userCommented, setUserCommented] = useState({});
+	// const [userCommented, setUserCommented] = useState({});
 
-	const fetchUserCommented = async (id) => {
-		// const current = Users.find((el) => el.id === id);
-		try {
-			const dbRes = await (
-				await fetch(`http://localhost:5005/api/users/${id}`, {
-					headers: {
-						"x-auth-token": user.token,
-					},
-				})
-			).json();
+	// const fetchUserCommented = async (id) => {
+	// 	try {
+	// 		const dbRes = await (
+	// 			await fetch(`http://localhost:5005/api/users?userId=${id}`, {
+	// 				headers: {
+	// 					"x-auth-token": user.token,
+	// 				},
+	// 			})
+	// 		).json();
 
-			setUserCommented({ ...dbRes.user });
-		} catch (err) {
-			console.log(err);
-		}
-	};
+	// 		setUserCommented({ ...dbRes.user });
+	// 	} catch (err) {
+	// 		console.log(err);
+	// 	}
+	// };
 
+	// useEffect(() => {
+	// 	fetchUserCommented(userId);
+	// }, []);
+
+	//--------------------------------------------------------------------------------
+
+	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+	const { likes, date, desc, img } = post;
+	const [user, setUser] = useState({});
 	const [liked, setLiked] = useState({
 		click: false,
 		number: likes.length,
@@ -46,28 +55,41 @@ const Post = (props) => {
 			  }));
 	};
 
-	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
 	useEffect(() => {
-		fetchUserCommented(userId);
-	}, []);
+		const fetchUser = async () => {
+			let res = await (
+				await fetch(`http://localhost:5005/api/users/${post.userId}`, {
+					// headers: {
+					// 	"x-auth-token": user.token,
+					// },
+				})
+			).json();
+
+			setUser(res.user);
+		};
+		fetchUser();
+	}, [post.userId]);
 
 	return (
 		<PostContainer>
 			<div className="post-wrapper">
 				<div className="post-top">
 					<div className="post-top-left">
-						<img
-							className="post-profile-image"
-							src={
-								userCommented.profilePicture !== ""
-									? PF + userCommented.profilePicture
-									: PF + "person/noAvatar.png"
-							}
-							alt=""
-						/>
-						<span className="post-user-name">{userCommented.username}</span>
-						<span className="post-date">{date}</span>
+						<Link to={`/profile/${user.username}`}>
+							<img
+								className="post-profile-image"
+								src={
+									user.profilePicture !== ""
+										? PF + user.profilePicture
+										: PF + "person/noAvatar.png"
+								}
+								alt=""
+							/>
+						</Link>
+						<span className="post-user-name">{user.username}</span>
+						<span className="post-date">
+							{dayjs(date).format("DD/MM/YYYY")}
+						</span>
 					</div>
 					<div className="post-top-right">
 						<MoreVert />
@@ -96,7 +118,7 @@ const Post = (props) => {
 						</span>
 					</div>
 					<div className="post-bottom-right">
-						<span className="post-comment-text">{comment} comments</span>
+						<span className="post-comment-text"> comments</span>
 					</div>
 				</div>
 			</div>

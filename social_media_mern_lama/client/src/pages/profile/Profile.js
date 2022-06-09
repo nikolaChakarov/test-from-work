@@ -1,3 +1,6 @@
+import { useContext, useEffect } from "react";
+import { GlobalContext } from "../../context/GlobalState";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import Topbar from "../../components/Topbar";
@@ -6,7 +9,15 @@ import Feed from "../../components/Feed";
 import Rightbar from "../../components/Rightbar";
 
 const Profile = () => {
+	// const { setProfileUser, profileUser } = useContext(GlobalContext);
+
+	const params = useParams();
+
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+	// useEffect(() => {
+	// 	setProfileUser(params.username);
+	// }, [profileUser]);
 
 	return (
 		<ProfileContainer>
@@ -28,13 +39,13 @@ const Profile = () => {
 							/>
 						</div>
 						<div className="profile-info">
-							<h4 className="profile-info-name">Nikk</h4>
-							<span className="profile-info-desc">Hello my friends</span>
+							{/* <h4 className="profile-info-name">{profileUser?.username}</h4>
+							<span className="profile-info-desc">{profileUser?.desc}</span> */}
 						</div>
 					</div>
 
 					<div className="profile-right-bottom">
-						<Feed />
+						<Feed username="mario" />
 						<Rightbar profile />
 					</div>
 				</div>

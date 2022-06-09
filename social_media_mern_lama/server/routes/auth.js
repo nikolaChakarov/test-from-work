@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 // Regiter
 router.post("/register", async (req, res) => {
 	try {
-		const { username, email, password } = req.body;
+		const { username, email, password, city, from, relationship } = req.body;
 
 		let user = await User.findOne({ username });
 
@@ -21,6 +21,9 @@ router.post("/register", async (req, res) => {
 			username,
 			email,
 			password: hashedPass,
+			city,
+			from,
+			relationship,
 		});
 
 		const token = jwt.sign({ userId: user._id }, process.env.SECRET, {

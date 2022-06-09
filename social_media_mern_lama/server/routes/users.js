@@ -57,9 +57,16 @@ router.delete("/:id", isAuth, async (req, res) => {
 });
 
 // get a user
-router.get("/:id", isAuth, async (req, res) => {
+router.get("/:id", async (req, res) => {
+	// const userId = req.query.userId;
+	// const username = req.query.username;
+
+	const userId = req.params.id;
+
 	try {
-		const user = await User.findById(req.params.id);
+		const user = userId
+			? await User.findById(userId)
+			: await User.findOne({ username: username });
 
 		if (!user) {
 			throw "No such an user!";

@@ -9,12 +9,16 @@ const init = {
 		: null,
 	users: [],
 	posts: [],
+	allUserPosts: [],
 	registerUser: (userdata) => {},
 	loginUser: (userdata) => {},
 	registerError: "",
 	loginError: "",
 	getAllUsers: () => {},
 	getAllPosts: () => {},
+	profileUser: null,
+	setProfileUser: (username) => {},
+	getAllUserPosts: (username) => {},
 };
 
 export const GlobalContext = createContext(init);
@@ -35,8 +39,6 @@ export const GlobalProvider = ({ children }) => {
 
 	const getAllPosts = async (id) => {
 		try {
-			// get from db later...
-
 			const dbRes = await (
 				await fetch(`http://localhost:5005/api/posts/timeline/${id}`, {
 					headers: {
@@ -47,6 +49,25 @@ export const GlobalProvider = ({ children }) => {
 
 			dispatch({
 				type: "ALL_POSTS",
+				payload: dbRes,
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const getAllUserPosts = async (username) => {
+		try {
+			const dbRes = await (
+				await fetch(`http://localhost:5005/api/posts/profile/${username}`, {
+					headers: {
+						"x-auth-token": appState.user.token,
+					},
+				})
+			).json();
+
+			dispatch({
+				type: "ALL_USER_POSTS",
 				payload: dbRes,
 			});
 		} catch (err) {
@@ -125,19 +146,40 @@ export const GlobalProvider = ({ children }) => {
 		}
 	};
 
+	const setProfileUser = async (username) => {
+		console.log(username);
+		try {
+			const dbRes = await (
+				await fetch(`http//localhost:5005/api/users?username=${username}`, {
+					headers: {
+						"x-auth-token": appState.user.token,
+					},
+				})
+			).json();
+
+			console.log(dbRes);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	return (
 		<GlobalContext.Provider
 			value={{
 				user: appState.user,
 				posts: appState.posts,
 				users: appState.users,
+				allUserPosts: appState.allUserPosts,
 				dispatch,
 				registerUser,
 				loginUser,
 				registerError: appState.registerError,
 				loginError: appState.loginError,
+				profileUser: appState.profileUser,
+				setProfileUser,
 				getAllUsers,
 				getAllPosts,
+				getAllUserPosts,
 			}}
 		>
 			{children}

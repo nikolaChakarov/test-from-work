@@ -43,6 +43,12 @@ const AppReducer = (state, action) => {
 				posts: [...action.payload],
 			};
 
+		case "ALL_USER_POSTS":
+			return {
+				...state,
+				allUserPosts: [...action.payload],
+			};
+
 		default:
 			return state;
 	}

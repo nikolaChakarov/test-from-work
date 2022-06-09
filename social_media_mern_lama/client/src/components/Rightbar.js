@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import styled from "styled-components";
 
-const Rightbar = ({ profile }) => {
+const Rightbar = ({ profile, user }) => {
 	const { users, getAllUsers } = useContext(GlobalContext);
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -29,13 +29,13 @@ const Rightbar = ({ profile }) => {
 						<div className="rightbar-profile-image-container">
 							<img
 								className="rightbar-profile-image"
-								src={PF + user.profilePicture}
+								src={PF + user?.profilePicture}
 								alt=""
 							/>
 							<span className="rightbar-online"></span>
 						</div>
 
-						<span className="rightbar-username">{user.username}</span>
+						<span className="rightbar-username">{user?.username}</span>
 					</li>
 				))}
 			</ul>
@@ -48,17 +48,17 @@ const Rightbar = ({ profile }) => {
 			<div className="rightbar-info">
 				<div className="rightbar-info-item">
 					<span className="rightbar-info-key">City:</span>
-					<span className="rightbar-info-value">New York</span>
+					<span className="rightbar-info-value">{user?.city}</span>
 				</div>
 
 				<div className="rightbar-info-item">
 					<span className="rightbar-info-key">From:</span>
-					<span className="rightbar-info-value">Madrid</span>
+					<span className="rightbar-info-value">{user?.from}</span>
 				</div>
 
 				<div className="rightbar-info-item">
 					<span className="rightbar-info-key">Relationship:</span>
-					<span className="rightbar-info-value">Single</span>
+					<span className="rightbar-info-value">{user?.relationship}</span>
 				</div>
 			</div>
 			<h4 className="rightbar-title">User friends</h4>

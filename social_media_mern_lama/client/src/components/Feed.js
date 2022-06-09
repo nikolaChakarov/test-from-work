@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import styled from "styled-components";
 import Post from "./Post";
@@ -6,18 +6,52 @@ import Share from "./Share";
 
 import { useNavigate } from "react-router-dom";
 
-const Feed = () => {
-	const navigate = useNavigate();
-	const { posts, getAllPosts, user } = useContext(GlobalContext);
+const Feed = ({ username }) => {
+	// const navigate = useNavigate();
+	const { user } = useContext(GlobalContext);
+
+	// // const [data, setData] = useState(posts ? [...posts] : [...allUserPosts]);
+
+	// useEffect(() => {
+	// 	if (!user) {
+	// 		navigate("/register");
+	// 		return;
+	// 	}
+
+	// 	// profile ? getAllUserPosts(user.username) : getAllPosts(user.userId);
+	// 	getAllPosts(user.userId);
+	// }, []);
+
+	// // useEffect(() => {
+	// // 	if (profile) {
+	// // 		setData((prev) => [...allUserPosts]);
+	// // 	} else {
+	// // 		setData((prev) => [...posts]);
+	// // 	}
+	// // }, [posts, allUserPosts]);
+
+	// -------------------------------------------------------------------------
+	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
-		if (!user) {
-			navigate("/register");
-			return;
-		}
+		const fetchPosts = async () => {
+			let res = username
+				? []
+				: await (
+						await fetch(
+							`http://localhost:5005/api/posts/timeline/${user.userId}`,
+							{
+								// headers: {
+								// 	"x-auth-token": user.token,
+								// },
+							}
+						)
+				  ).json();
 
-		getAllPosts(user.userId);
-	}, [user]);
+			setPosts(res);
+		};
+		fetchPosts();
+	}, []);
 
 	return (
 		<FeedContainer>
@@ -25,7 +59,7 @@ const Feed = () => {
 				<Share />
 				<div className="feed-posts-wrapper">
 					{posts.map((data, i) => (
-						<Post key={i} {...data} />
+						<Post key={i} post={data} />
 					))}
 				</div>
 			</div>
