@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Register = () => {
 	return (
 		<RegisterContainer>
-			<form className="register-wrapper">
+			<div className="register-wrapper">
 				<div className="register-left">
 					<h3 className="register-logo">Logo</h3>
 					<span className="register-desc">
@@ -13,7 +13,7 @@ const Register = () => {
 					</span>
 				</div>
 				<div className="register-right">
-					<div className="register-box">
+					<form className="register-box">
 						<input
 							type="text"
 							placeholder="Username"
@@ -42,9 +42,9 @@ const Register = () => {
 						<Link to={"/login"} className="login-link">
 							Log into Account
 						</Link>
-					</div>
+					</form>
 				</div>
-			</form>
+			</div>
 		</RegisterContainer>
 	);
 };

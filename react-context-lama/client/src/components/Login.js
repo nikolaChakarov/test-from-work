@@ -4,9 +4,19 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Login = () => {
+	const emailEl = useRef();
+	const passwordEl = useRef();
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		const email = emailEl.current.value;
+		const password = passwordEl.current.value;
+	};
+
 	return (
 		<LoginContainer>
-			<form className="login-wrapper">
+			<div className="login-wrapper">
 				<div className="login-left">
 					<h3 className="login-logo">Logo</h3>
 					<span className="login-desc">
@@ -14,27 +24,27 @@ const Login = () => {
 					</span>
 				</div>
 				<div className="login-right">
-					<div className="login-box">
+					<form className="login-box" onSubmit={handleSubmit}>
 						<input
 							type="text"
-							placeholder="email"
+							placeholder="username"
 							className="login-input"
-							name="email"
+							ref={emailEl}
 						/>
 						<input
 							type="text"
 							placeholder="password"
 							className="login-input"
-							name="password"
+							ref={passwordEl}
 						/>
 						<button className="login-bttn">Log In</button>
 						<span className="login-forgot">Forgot Pssword?</span>
 						<Link to={"/register"} className="register-link">
 							Create a new account
 						</Link>
-					</div>
+					</form>
 				</div>
-			</form>
+			</div>
 		</LoginContainer>
 	);
 };

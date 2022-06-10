@@ -8,10 +8,10 @@ router.post("/register", async (req, res) => {
 	try {
 		const { username, password, email } = req.body;
 
-		let user = await User.findOne({ username: username });
+		let user = await User.findOne({ email: email });
 
 		if (user) {
-			throw "username is already taken";
+			throw new Error("email is already taken");
 		}
 
 		const hashed = await bcrypt.hash(password, Number(process.env.SALT));
@@ -22,14 +22,14 @@ router.post("/register", async (req, res) => {
 			password: hashed,
 		});
 
-		let dbRes = await user.save();
+		await user.save();
 
 		const token = jwt.sign({ userId: user._id }, process.env.SECRET, {
 			expiresIn: 3600000,
 		});
 
 		if (!token) {
-			throw "invalid token";
+			throw new Error("invalid token");
 		}
 
 		res.status(200).json({
@@ -37,23 +37,24 @@ router.post("/register", async (req, res) => {
 			payload: {
 				token,
 				username,
+				email,
 				userId: user._id,
 			},
 		});
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({ status: "fail", message: err });
+		res.status(500).json({ status: "fail", message: err.message });
 	}
 });
 
 router.post("/login", async (req, res) => {
 	try {
-		const { password, username } = req.body;
+		const { password, email } = req.body;
 
-		let user = await User.findOne({ username: username });
+		let user = await User.findOne({ email: email });
 
 		if (!user) {
-			throw "no such an user";
+			throw new Error("no such an user");
 		}
 
 		const isPassValid = await bcrypt.compare(password, user.password);
@@ -73,14 +74,15 @@ router.post("/login", async (req, res) => {
 		res.status(200).json({
 			status: "success",
 			payload: {
-				username,
+				email,
 				token,
+				username: user.username,
 				userId: user._id,
 			},
 		});
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({ status: "fail", message: err });
+		res.status(500).json({ status: "fail", message: err.message });
 	}
 });
 
