@@ -58,7 +58,7 @@ const Post = ({ post }) => {
 	useEffect(() => {
 		const fetchUser = async () => {
 			let res = await (
-				await fetch(`http://localhost:5005/api/users/${post.userId}`, {
+				await fetch(`http://localhost:5005/api/users?userId=${post.userId}`, {
 					// headers: {
 					// 	"x-auth-token": user.token,
 					// },
@@ -86,6 +86,7 @@ const Post = ({ post }) => {
 								alt=""
 							/>
 						</Link>
+
 						<span className="post-user-name">{user.username}</span>
 						<span className="post-date">
 							{dayjs(date).format("DD/MM/YYYY")}

@@ -57,11 +57,11 @@ router.delete("/:id", isAuth, async (req, res) => {
 });
 
 // get a user
-router.get("/:id", async (req, res) => {
-	// const userId = req.query.userId;
-	// const username = req.query.username;
+router.get("/", async (req, res) => {
+	const userId = req.query.userId;
+	const username = req.query.username;
 
-	const userId = req.params.id;
+	// const userId = req.params.id;
 
 	try {
 		const user = userId

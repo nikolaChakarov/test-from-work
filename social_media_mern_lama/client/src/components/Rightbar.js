@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import styled from "styled-components";
 
-const Rightbar = ({ profile, user }) => {
+const Rightbar = ({ user }) => {
 	const { users, getAllUsers } = useContext(GlobalContext);
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -119,7 +119,7 @@ const Rightbar = ({ profile, user }) => {
 	return (
 		<RightbarContainer>
 			<div className="rightbar-wrapper">
-				{profile ? <ProfileRightbar /> : <HomeRightbar />}
+				{user ? <ProfileRightbar /> : <HomeRightbar />}
 			</div>
 		</RightbarContainer>
 	);

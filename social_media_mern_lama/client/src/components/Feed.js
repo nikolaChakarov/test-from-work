@@ -36,7 +36,13 @@ const Feed = ({ username }) => {
 	useEffect(() => {
 		const fetchPosts = async () => {
 			let res = username
-				? []
+				? await (
+						await fetch(`http://localhost:5005/api/posts/profile/${username}`, {
+							// headers: {
+							// 	"x-auth-token": user.token,
+							// },
+						})
+				  ).json()
 				: await (
 						await fetch(
 							`http://localhost:5005/api/posts/timeline/${user.userId}`,

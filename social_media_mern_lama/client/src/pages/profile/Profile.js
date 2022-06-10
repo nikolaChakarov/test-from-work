@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -18,6 +18,26 @@ const Profile = () => {
 	// useEffect(() => {
 	// 	setProfileUser(params.username);
 	// }, [profileUser]);
+
+	const [user, setUser] = useState({});
+
+	useEffect(() => {
+		const fetchUser = async () => {
+			let res = await (
+				await fetch(
+					`http://localhost:5005/api/users?username=${params.username}`,
+					{
+						// headers: {
+						// 	"x-auth-token": user.token,
+						// },
+					}
+				)
+			).json();
+
+			setUser(res.user);
+		};
+		fetchUser();
+	}, [params.username]);
 
 	return (
 		<ProfileContainer>
@@ -39,14 +59,14 @@ const Profile = () => {
 							/>
 						</div>
 						<div className="profile-info">
-							{/* <h4 className="profile-info-name">{profileUser?.username}</h4>
-							<span className="profile-info-desc">{profileUser?.desc}</span> */}
+							<h4 className="profile-info-name">{user.username}</h4>
+							<span className="profile-info-desc">{user.description}</span>
 						</div>
 					</div>
 
 					<div className="profile-right-bottom">
-						<Feed username="mario" />
-						<Rightbar profile />
+						<Feed username={params.username} />
+						<Rightbar user={user} />
 					</div>
 				</div>
 			</div>
