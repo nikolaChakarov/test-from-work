@@ -6,6 +6,12 @@ const AppReducer = (state, action) => {
 				...state,
 				user: action.payload,
 			};
+		case "LOGOUT":
+			localStorage.removeItem("user");
+			return {
+				...state,
+				user: null,
+			};
 
 		case "REGISTER_ERROR":
 			return {

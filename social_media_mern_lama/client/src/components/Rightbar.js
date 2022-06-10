@@ -58,7 +58,13 @@ const Rightbar = ({ user }) => {
 
 				<div className="rightbar-info-item">
 					<span className="rightbar-info-key">Relationship:</span>
-					<span className="rightbar-info-value">{user?.relationship}</span>
+					<span className="rightbar-info-value">
+						{user?.relationship === 1
+							? "Single"
+							: user?.relationship === 2
+							? "Maried"
+							: "Friend"}
+					</span>
 				</div>
 			</div>
 			<h4 className="rightbar-title">User friends</h4>

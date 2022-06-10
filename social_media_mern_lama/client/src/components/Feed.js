@@ -7,49 +7,33 @@ import Share from "./Share";
 import { useNavigate } from "react-router-dom";
 
 const Feed = ({ username }) => {
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 	const { user } = useContext(GlobalContext);
 
-	// // const [data, setData] = useState(posts ? [...posts] : [...allUserPosts]);
-
-	// useEffect(() => {
-	// 	if (!user) {
-	// 		navigate("/register");
-	// 		return;
-	// 	}
-
-	// 	// profile ? getAllUserPosts(user.username) : getAllPosts(user.userId);
-	// 	getAllPosts(user.userId);
-	// }, []);
-
-	// // useEffect(() => {
-	// // 	if (profile) {
-	// // 		setData((prev) => [...allUserPosts]);
-	// // 	} else {
-	// // 		setData((prev) => [...posts]);
-	// // 	}
-	// // }, [posts, allUserPosts]);
-
-	// -------------------------------------------------------------------------
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
 		const fetchPosts = async () => {
+			if (!user) {
+				navigate("/register");
+				return;
+			}
+
 			let res = username
 				? await (
 						await fetch(`http://localhost:5005/api/posts/profile/${username}`, {
-							// headers: {
-							// 	"x-auth-token": user.token,
-							// },
+							headers: {
+								"x-auth-token": user.token,
+							},
 						})
 				  ).json()
 				: await (
 						await fetch(
 							`http://localhost:5005/api/posts/timeline/${user.userId}`,
 							{
-								// headers: {
-								// 	"x-auth-token": user.token,
-								// },
+								headers: {
+									"x-auth-token": user.token,
+								},
 							}
 						)
 				  ).json();

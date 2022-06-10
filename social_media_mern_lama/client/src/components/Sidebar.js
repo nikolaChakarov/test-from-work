@@ -1,7 +1,10 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+import { useNavigate } from "react-router-dom";
+
 import {
 	Bookmark,
 	Chat,
@@ -12,16 +15,32 @@ import {
 	RssFeed,
 	School,
 	WorkOutline,
+	Logout,
 } from "@mui/icons-material";
 
 const Sidebar = () => {
-	const { users } = useContext(GlobalContext);
+	const navigate = useNavigate();
+
+	const { user, users, dispatch } = useContext(GlobalContext);
 
 	const [showMore, setShowMore] = useState(false);
 
 	const handleShowMore = () => {
 		setShowMore(!showMore);
 	};
+
+	const handleLogout = (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+
+		dispatch({
+			type: "LOGOUT",
+		});
+	};
+
+	useEffect(() => {
+		if (!user) navigate("/login");
+	}, [user]);
 
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -89,6 +108,13 @@ const Sidebar = () => {
 						<Link to={"#"}>
 							<School className="sidebar-icon" />
 							<span className="sidebar-list-item-text">Courses</span>
+						</Link>
+					</li>
+
+					<li className="sidebar-list-item" onClick={handleLogout}>
+						<Link to={"#"}>
+							<Logout className="sidebar-icon" />
+							<span className="sidebar-list-item-text">Logout</span>
 						</Link>
 					</li>
 				</ul>

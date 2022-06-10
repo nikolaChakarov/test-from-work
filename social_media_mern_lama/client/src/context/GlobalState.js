@@ -16,8 +16,6 @@ const init = {
 	loginError: "",
 	getAllUsers: () => {},
 	getAllPosts: () => {},
-	profileUser: null,
-	setProfileUser: (username) => {},
 	getAllUserPosts: (username) => {},
 };
 
@@ -146,23 +144,6 @@ export const GlobalProvider = ({ children }) => {
 		}
 	};
 
-	const setProfileUser = async (username) => {
-		console.log(username);
-		try {
-			const dbRes = await (
-				await fetch(`http//localhost:5005/api/users?username=${username}`, {
-					headers: {
-						"x-auth-token": appState.user.token,
-					},
-				})
-			).json();
-
-			console.log(dbRes);
-		} catch (err) {
-			console.log(err);
-		}
-	};
-
 	return (
 		<GlobalContext.Provider
 			value={{
@@ -176,7 +157,6 @@ export const GlobalProvider = ({ children }) => {
 				registerError: appState.registerError,
 				loginError: appState.loginError,
 				profileUser: appState.profileUser,
-				setProfileUser,
 				getAllUsers,
 				getAllPosts,
 				getAllUserPosts,

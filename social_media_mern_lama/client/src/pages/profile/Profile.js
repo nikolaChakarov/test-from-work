@@ -8,33 +8,38 @@ import Sidebar from "../../components/Sidebar";
 import Feed from "../../components/Feed";
 import Rightbar from "../../components/Rightbar";
 
+import { useNavigate } from "react-router-dom";
+
 const Profile = () => {
-	// const { setProfileUser, profileUser } = useContext(GlobalContext);
+	const navigate = useNavigate();
+
+	const { user } = useContext(GlobalContext);
 
 	const params = useParams();
 
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-	// useEffect(() => {
-	// 	setProfileUser(params.username);
-	// }, [profileUser]);
-
-	const [user, setUser] = useState({});
+	const [profileUser, setProfileUser] = useState({});
 
 	useEffect(() => {
+		if (!user) {
+			navigate("/register");
+			return;
+		}
+
 		const fetchUser = async () => {
 			let res = await (
 				await fetch(
 					`http://localhost:5005/api/users?username=${params.username}`,
 					{
-						// headers: {
-						// 	"x-auth-token": user.token,
-						// },
+						headers: {
+							"x-auth-token": user.token,
+						},
 					}
 				)
 			).json();
 
-			setUser(res.user);
+			setProfileUser(res.user);
 		};
 		fetchUser();
 	}, [params.username]);
@@ -54,19 +59,21 @@ const Profile = () => {
 							/>
 							<img
 								className="profile-user-image"
-								src={PF + "person/1.jpeg"}
+								src={profileUser.profilePicture || PF + "person/noAvatar.png"}
 								alt=""
 							/>
 						</div>
 						<div className="profile-info">
-							<h4 className="profile-info-name">{user.username}</h4>
-							<span className="profile-info-desc">{user.description}</span>
+							<h4 className="profile-info-name">{profileUser.username}</h4>
+							<span className="profile-info-desc">
+								{profileUser.description}
+							</span>
 						</div>
 					</div>
 
 					<div className="profile-right-bottom">
 						<Feed username={params.username} />
-						<Rightbar user={user} />
+						<Rightbar user={profileUser} />
 					</div>
 				</div>
 			</div>

@@ -4,40 +4,19 @@ import styled from "styled-components";
 import { MoreVert } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+
 import dayjs from "dayjs";
 
 const Post = ({ post }) => {
-	// const { user } = useContext(GlobalContext);
+	const navigate = useNavigate();
 
-	// const { likes, userId, date, desc, img, comment } = props;
-
-	// const [userCommented, setUserCommented] = useState({});
-
-	// const fetchUserCommented = async (id) => {
-	// 	try {
-	// 		const dbRes = await (
-	// 			await fetch(`http://localhost:5005/api/users?userId=${id}`, {
-	// 				headers: {
-	// 					"x-auth-token": user.token,
-	// 				},
-	// 			})
-	// 		).json();
-
-	// 		setUserCommented({ ...dbRes.user });
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 	}
-	// };
-
-	// useEffect(() => {
-	// 	fetchUserCommented(userId);
-	// }, []);
-
-	//--------------------------------------------------------------------------------
+	const { user } = useContext(GlobalContext);
 
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 	const { likes, date, desc, img } = post;
-	const [user, setUser] = useState({});
+
+	const [userPost, setUserPost] = useState({});
 	const [liked, setLiked] = useState({
 		click: false,
 		number: likes.length,
@@ -56,16 +35,20 @@ const Post = ({ post }) => {
 	};
 
 	useEffect(() => {
+		if (!user) {
+			navigate("/register");
+			return;
+		}
 		const fetchUser = async () => {
 			let res = await (
 				await fetch(`http://localhost:5005/api/users?userId=${post.userId}`, {
-					// headers: {
-					// 	"x-auth-token": user.token,
-					// },
+					headers: {
+						"x-auth-token": user.token,
+					},
 				})
 			).json();
 
-			setUser(res.user);
+			setUserPost(res.user);
 		};
 		fetchUser();
 	}, [post.userId]);
@@ -75,19 +58,19 @@ const Post = ({ post }) => {
 			<div className="post-wrapper">
 				<div className="post-top">
 					<div className="post-top-left">
-						<Link to={`/profile/${user.username}`}>
+						<Link to={`/profile/${userPost.username}`}>
 							<img
 								className="post-profile-image"
 								src={
-									user.profilePicture !== ""
-										? PF + user.profilePicture
+									userPost.profilePicture !== ""
+										? PF + userPost.profilePicture
 										: PF + "person/noAvatar.png"
 								}
 								alt=""
 							/>
 						</Link>
 
-						<span className="post-user-name">{user.username}</span>
+						<span className="post-user-name">{userPost.username}</span>
 						<span className="post-date">
 							{dayjs(date).format("DD/MM/YYYY")}
 						</span>
