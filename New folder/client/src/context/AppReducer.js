@@ -1,10 +1,9 @@
 const AppReducer = (state, action) => {
-	// console.log(action.payload);
 	switch (action.type) {
-		case "USER":
+		case "USERS_COMMENTS":
 			return {
 				...state,
-				user: action.payload,
+				usersComments: action.payload,
 			};
 
 		case "ALL_POSTS":

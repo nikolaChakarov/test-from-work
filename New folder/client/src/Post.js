@@ -1,16 +1,23 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "./context/GlobalState";
 
 const Post = (props) => {
 	const { desc, photo, date, userId } = props;
 
-	const { getUser, user } = useContext(GlobalContext);
+	const { getUsersComments, usersComments } = useContext(GlobalContext);
+
+	const [comment, setComment] = useState([]);
 
 	useEffect(() => {
-		getUser(userId);
+		getUsersComments()
 	}, []);
 
-	console.log(user);
+	useEffect(() => {
+		const currentComment = usersComments.find(el => el.id === userId);
+		setComment(currentComment)
+	}, [usersComments]);
+
+	console.log(comment);
 
 	return (
 		<div
