@@ -21,27 +21,27 @@ const Feed = ({ username }) => {
 
 			let res = username
 				? await (
-						await fetch(`http://localhost:5005/api/posts/profile/${username}`, {
+					await fetch(`http://localhost:5005/api/posts/profile/${username}`, {
+						headers: {
+							"x-auth-token": user.token,
+						},
+					})
+				).json()
+				: await (
+					await fetch(
+						`http://localhost:5005/api/posts/timeline/${user.userId}`,
+						{
 							headers: {
 								"x-auth-token": user.token,
 							},
-						})
-				  ).json()
-				: await (
-						await fetch(
-							`http://localhost:5005/api/posts/timeline/${user.userId}`,
-							{
-								headers: {
-									"x-auth-token": user.token,
-								},
-							}
-						)
-				  ).json();
+						}
+					)
+				).json();
 
 			setPosts(res);
 		};
 		fetchPosts();
-	}, []);
+	}, [username]);
 
 	return (
 		<FeedContainer>

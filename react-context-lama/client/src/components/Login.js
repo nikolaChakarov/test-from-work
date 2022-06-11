@@ -1,9 +1,18 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext, useEffect } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
+import { CircularProgress } from '@mui/material';
+
+import { loginUser } from "../apiCalls";
 
 import styled from "styled-components";
 
 const Login = () => {
+	const navigate = useNavigate();
+	const { user, isFetching, error, dispatch } = useContext(AuthContext);
+
 	const emailEl = useRef();
 	const passwordEl = useRef();
 
@@ -12,7 +21,15 @@ const Login = () => {
 
 		const email = emailEl.current.value;
 		const password = passwordEl.current.value;
+
+		loginUser({ email, password }, dispatch);
 	};
+
+	useEffect(() => {
+		if (user) {
+			navigate('/')
+		}
+	}, [user, navigate])
 
 	return (
 		<LoginContainer>
@@ -37,13 +54,21 @@ const Login = () => {
 							className="login-input"
 							ref={passwordEl}
 						/>
-						<button className="login-bttn">Log In</button>
+
+						<button className="login-bttn" disabled={isFetching}>
+							{isFetching ? <CircularProgress size={'20px'} sx={{
+								color: isFetching ? 'red' : 'white',
+							}} /> : 'Log In'}
+						</button>
+
 						<span className="login-forgot">Forgot Pssword?</span>
 						<Link to={"/register"} className="register-link">
 							Create a new account
 						</Link>
 					</form>
 				</div>
+
+				{error && <div>{error}</div>}
 			</div>
 		</LoginContainer>
 	);
@@ -109,6 +134,10 @@ const LoginContainer = styled.div`
 		font-size: 20px;
 		font-weight: 500;
 		cursor: pointer;
+	}
+
+	.login-bttn:disabled {
+		background: #dedede;
 	}
 
 	.login-forgot {

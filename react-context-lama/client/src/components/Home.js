@@ -4,15 +4,24 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
 	const navigate = useNavigate();
-	const { user } = useContext(AuthContext);
+	const { user, dispatch } = useContext(AuthContext);
+
+	const handleLogout = () => {
+		dispatch({
+			type: 'LOGOUT'
+		});
+	}
 
 	useEffect(() => {
 		if (!user) {
-			navigate("/register");
+			navigate("/login");
 		}
 	}, [user]);
 
-	return <div>Home</div>;
+	return <div>Home
+		<button onClick={handleLogout}>Loggout</button>
+
+	</div>;
 };
 
 export default Home;
