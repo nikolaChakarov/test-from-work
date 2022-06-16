@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
+import { GlobalContext } from "../../context/GlobalState";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import useScroll from "../../hooks/useScroll";
 
@@ -9,7 +11,15 @@ import Feed from "../../components/Feed";
 import Rightbar from "../../components/Rightbar";
 
 const Home = () => {
+	const { user } = useContext(GlobalContext);
+	const navigate = useNavigate();
 	const scrollY = useScroll();
+
+	useEffect(() => {
+		if (!user) {
+			navigate('/register')
+		}
+	}, []);
 
 	return (
 		<HomeContainer>

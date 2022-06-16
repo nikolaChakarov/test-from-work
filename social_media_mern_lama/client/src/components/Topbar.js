@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -8,13 +9,19 @@ import useDebounce from "../hooks/useDebounce";
 import { Chat, Notifications, Person, Search } from "@mui/icons-material";
 
 const Topbar = ({ scrollY }) => {
+
+
+	const { user } = useContext(GlobalContext);
+	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
 	const { values, handleInputChange } = useForm(null, {
 		search: "",
 	});
 
 	const debounced = useDebounce(values.search, 1000);
 
-	useEffect(() => {}, [debounced]);
+
+	useEffect(() => { }, [debounced]);
 
 	return (
 		<TopbarContainer scrollY={scrollY}>
@@ -60,9 +67,11 @@ const Topbar = ({ scrollY }) => {
 						<span className="topbar-icon-badge">1</span>
 					</div>
 				</div>
-				<div className="toolbar-image-wrapper">
-					<img src="/assets/person/1.jpeg" alt="" className="topbar-image" />
-				</div>
+				<Link to={`/profile/${user.username}`}>
+					<div className="toolbar-image-wrapper">
+						<img src={`${user?.profilePicture ? user?.profilePicture : PF + 'person/noAvatar.png'}`} alt="" className="topbar-image" />
+					</div>
+				</Link>
 			</div>
 		</TopbarContainer>
 	);

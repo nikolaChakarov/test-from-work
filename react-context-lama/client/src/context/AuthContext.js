@@ -18,6 +18,7 @@ export const AuthContextProvider = ({ children }) => {
 				user: state.user,
 				isFetching: state.isFetching,
 				error: state.error,
+				dispatch
 			}}
 		>
 			{children}
