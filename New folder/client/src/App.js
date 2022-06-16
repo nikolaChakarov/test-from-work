@@ -1,18 +1,22 @@
-import { useEffect, useContext } from "react";
-import { GlobalContext } from "./context/GlobalState";
-import Post from "./Post";
+import Search from "./search/Search";
+import useScroll from "./hooks/useScroll";
+import { useEffect } from "react";
 
 const App = () => {
-	const { posts, getAllPosts } = useContext(GlobalContext);
+	const scroll = useScroll();
 
 	useEffect(() => {
-		getAllPosts();
-	}, []);
+		if (scroll > 500) {
+			console.log(scroll);
+		}
+	}, [scroll]);
 
 	return (
 		<div>
-			{posts.map((p, i) => (
-				<Post key={i} {...p} />
+			<Search />
+
+			{new Array(100).fill("").map((el, i) => (
+				<p key={i}>{i}</p>
 			))}
 		</div>
 	);

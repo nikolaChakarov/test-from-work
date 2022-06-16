@@ -21,7 +21,6 @@ const Debounce = () => {
 	};
 
 	const debouncedInputValue = useDebounce(query, 500);
-	console.log(debouncedInputValue, "xxxxxxxxxx");
 
 	useEffect(() => {
 		if (debouncedInputValue) {
