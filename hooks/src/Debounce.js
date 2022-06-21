@@ -4,6 +4,7 @@ import useDebounce from "./hooks/debounce";
 
 const Debounce = () => {
 	let filteredNames = fakeNames;
+	const [keyPressed, setKeyPressed] = useState(false);
 
 	// input value
 	const [query, setQuery] = useState("");
@@ -23,7 +24,7 @@ const Debounce = () => {
 	const debouncedInputValue = useDebounce(query, 500);
 
 	useEffect(() => {
-		if (debouncedInputValue) {
+		if (debouncedInputValue && !keyPressed) {
 			console.log(debouncedInputValue);
 
 			setResults((prev) => [
@@ -47,7 +48,12 @@ const Debounce = () => {
 				}}
 			/>
 
-			<input type="text" onChange={onInputChange} />
+			<input
+				type="text"
+				onChange={onInputChange}
+				onKeyDown={() => setKeyPressed(true)}
+				onKeyUp={() => setKeyPressed(false)}
+			/>
 
 			{/* with no debounce */}
 			{/* {filteredNames.map((el, i) => (
